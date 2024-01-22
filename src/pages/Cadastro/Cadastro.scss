@@ -1,0 +1,15 @@
+@import "../../../global.scss";
+
+.dashboard-box {
+  border: 2px solid #4779fb;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+
+  .h1-cadastro {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}

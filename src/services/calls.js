@@ -30,13 +30,28 @@ export const getClient = async () => {
       },
     });
     if (response.status === 200) {
-      console.log(response);
       return response;
     } else {
       return 401;
     }
   } catch (error) {
-    console.log(error);
+    return 500;
+  }
+};
+
+export const deleteClient = async (id) => {
+  try {
+    const response = await api.delete(`clientes/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 204) {
+      return 204;
+    } else {
+      return 401;
+    }
+  } catch (error) {
     return 500;
   }
 };

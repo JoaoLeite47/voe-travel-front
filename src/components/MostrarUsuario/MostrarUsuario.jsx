@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./MostrarUsuario.scss";
-import { getClient } from "../../services/calls";
+import { deleteClient, getClient } from "../../services/calls";
 import { MdRefresh, MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
 
 export default function MostrarUsuario() {
   const [dataList, setDataList] = useState([]);
@@ -13,6 +14,33 @@ export default function MostrarUsuario() {
       console.log(dataList);
     } else {
       alert("Erro ao buscar dados");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const result = await Swal.fire({
+        title: "Tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, deletar!",
+      });
+      if (result.isConfirmed) {
+        await deleteClient(id);
+        Swal.fire(
+          "Deletado!",
+          "O cliente foi deletado com sucesso.",
+          "success"
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error("Erro ao exibir o alerta:", error);
     }
   };
 
@@ -38,7 +66,10 @@ export default function MostrarUsuario() {
               </button>
               <button type="button">
                 <span role="img" aria-label="Deletar">
-                  <MdDelete className="button-icon deletar" />
+                  <MdDelete
+                    className="button-icon deletar"
+                    onClick={() => handleDelete(item.id)}
+                  />
                 </span>
               </button>
             </div>

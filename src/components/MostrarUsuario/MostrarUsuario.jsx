@@ -3,15 +3,27 @@ import "./MostrarUsuario.scss";
 import { deleteClient, getClient } from "../../services/calls";
 import { MdRefresh, MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
+import UpdateModal from "../UpdateModal/UpdateModal";
 
 export default function MostrarUsuario() {
   const [dataList, setDataList] = useState([]);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedPersonId, setSelectedPersonId] = useState(null);
+
+  const handleUpdate = (id) => {
+    setShowUpdateModal(true);
+    setSelectedPersonId(id);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+    setSelectedPersonId(null);
+  };
 
   const getData = async () => {
     const response = await getClient();
     if (response.status === 200) {
       setDataList(response.data);
-      console.log(dataList);
     } else {
       alert("Erro ao buscar dados");
     }
@@ -59,7 +71,7 @@ export default function MostrarUsuario() {
                 <span className="pedido-span">Pedido</span>
                 {item.pedido}
               </span>
-              <button type="button">
+              <button onClick={() => handleUpdate(item.id)}>
                 <span role="img" aria-label="Atualizar">
                   <MdRefresh className="button-icon atualizar" />
                 </span>
@@ -76,6 +88,12 @@ export default function MostrarUsuario() {
           </li>
         ))}
       </ul>
+      {showUpdateModal && (
+        <UpdateModal
+          id={selectedPersonId}
+          handleClose={handleCloseUpdateModal}
+        />
+      )}
     </div>
   );
 }

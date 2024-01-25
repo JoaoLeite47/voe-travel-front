@@ -55,3 +55,43 @@ export const deleteClient = async (id) => {
     return 500;
   }
 };
+
+export const getClientId = async (id) => {
+  try {
+    const response = await api.get(`clientes/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status == 200) {
+      return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    return 500;
+  }
+};
+
+export const updateClient = async (data, id) => {
+  const dados = {
+    nome: data.nome,
+    pedido: data.pedido,
+  };
+
+  try {
+    const response = await api.patch(`clientes/${id}`, dados, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response) {
+      return 200;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    console.log(error)
+    return 500;
+  }
+};

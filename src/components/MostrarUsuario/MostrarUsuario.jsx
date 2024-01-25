@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./MostrarUsuario.scss";
 import { deleteClient, getClient } from "../../services/calls";
-import { MdRefresh, MdDelete } from "react-icons/md";
+import { MdRefresh, MdDelete, MdList } from "react-icons/md";
 import Swal from "sweetalert2";
 import UpdateModal from "../UpdateModal/UpdateModal";
+import { useNavigate } from "react-router-dom";
 
 export default function MostrarUsuario() {
   const [dataList, setDataList] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedPersonId, setSelectedPersonId] = useState(null);
+  const navigate = useNavigate();
 
   const handleUpdate = (id) => {
     setShowUpdateModal(true);
@@ -56,6 +58,10 @@ export default function MostrarUsuario() {
     }
   };
 
+  const handleRedirect = (id) => {
+    navigate("/cadastroServicos", { state: { id } });
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -71,19 +77,26 @@ export default function MostrarUsuario() {
                 <span className="pedido-span">Pedido</span>
                 {item.pedido}
               </span>
-              <button onClick={() => handleUpdate(item.id)}>
-                <span role="img" aria-label="Atualizar">
-                  <MdRefresh className="button-icon atualizar" />
-                </span>
-              </button>
-              <button type="button">
-                <span role="img" aria-label="Deletar">
-                  <MdDelete
-                    className="button-icon deletar"
-                    onClick={() => handleDelete(item.id)}
-                  />
-                </span>
-              </button>
+              <div className="buttonsContainer">
+                <button onClick={() => handleUpdate(item.id)}>
+                  <span role="img" aria-label="Atualizar">
+                    <MdRefresh className="button-icon atualizar" />
+                  </span>
+                </button>
+                <button type="button">
+                  <span role="img" aria-label="Deletar">
+                    <MdDelete
+                      className="button-icon deletar"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                  </span>
+                </button>
+                <button onClick={() => handleRedirect(item.id)}>
+                  <span role="img" aria-label="Atualizar">
+                    <MdList className="button-icon atualizar" />
+                  </span>
+                </button>
+              </div>
             </div>
           </li>
         ))}

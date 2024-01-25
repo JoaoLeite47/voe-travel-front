@@ -11,6 +11,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .pedido-span {
         margin-right: 5px;
       }
@@ -31,7 +32,7 @@
       }
 
       button {
-        display: flex;
+        // display: flex;
         align-items: center;
         justify-content: center;
         border: none;
@@ -44,7 +45,7 @@
             color: blue;
           }
           &.deletar {
-            color: red
+            color: red;
           }
         }
         span {
@@ -52,7 +53,7 @@
         }
 
         &:last-child {
-          margin-left: 10px;
+          margin-left: 5px;
         }
       }
     }

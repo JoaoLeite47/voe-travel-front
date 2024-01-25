@@ -37,7 +37,15 @@
   cursor: pointer;
   font-size: 1rem;
 
-  &:hover {
+  &:disabled {
+    background-color: #acacac;
+    cursor: not-allowed;
+    &:hover {
+      background-color: #acacac;
+    }
+  }
+
+  &:hover:not(:disabled) {
     background-color: #2980b9; /* Cor de fundo do botão ao passar o mouse */
   }
 }

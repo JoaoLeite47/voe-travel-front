@@ -26,7 +26,8 @@ h2 {
     border-radius: 8px; /* Adiciona bordas arredondadas */
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid #acacac; /* Cor mais suave para as bordas */
     padding: 12px;
     text-align: left;
@@ -36,9 +37,20 @@ h2 {
   th {
     background-color: #f5f5f5; /* Cor mais suave para o cabeçalho */
   }
+  .th-delete {
+    background-color: red;
+    .button-delete {
+      color: #fff;
+      font-weight: 600;
+      background-color: red;
+      border: none;
+      cursor: pointer;
+    }
+  }
 
   @media (max-width: 600px) {
-    th, td {
+    th,
+    td {
       display: flex;
       align-items: center;
       justify-content: center;

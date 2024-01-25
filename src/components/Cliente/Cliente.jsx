@@ -75,7 +75,11 @@ export default function Cliente({ cliente, id }) {
       <h2 className="cliente-title">Adicionar serviços para:</h2>
       <span className="cliente-span">{cliente}</span>
       <div className="button-container">
-        <button className="add-button" onClick={openModalHotel}>
+        <button
+          className="add-button"
+          onClick={openModalHotel}
+          disabled={dataHotel.length === 3}
+        >
           Adicionar Hotel
         </button>
         {modalHotelOpen && (

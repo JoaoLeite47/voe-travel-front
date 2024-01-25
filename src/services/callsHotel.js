@@ -45,13 +45,30 @@ export const createHotel = async (data) => {
       },
     });
     if (response.status === 201) {
-      console.log(response)
+      console.log(response);
       return response;
     } else {
       return 401;
     }
   } catch (error) {
     console.log(error);
+    return 500;
+  }
+};
+
+export const deleteHotel = async (id) => {
+  try {
+    const response = await api.delete(`opcoes_hoteis/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 204) {
+      return 204;
+    } else {
+      return 401;
+    }
+  } catch (error) {
     return 500;
   }
 };

@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./Hotel.scss";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { deleteHotel } from "../../services/callsHotel";
+import Swal from "sweetalert2";
 
 export default function Hotel(data) {
+
   const formatarData = (data) => {
     const formatoDataRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
     if (!formatoDataRegex.test(data)) {
@@ -13,6 +16,34 @@ export default function Hotel(data) {
     // Converte a data para o padrão brasileiro
     return format(new Date(data), "dd/MM/yyyy", { locale: ptBR });
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const result = await Swal.fire({
+        title: "Tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, deletar!",
+      });
+      if (result.isConfirmed) {
+        await deleteHotel(id);
+        Swal.fire(
+          "Deletado!",
+          "O cliente foi deletado com sucesso.",
+          "success"
+        );
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error("Erro ao exibir o alerta:", error);
+    }
+  };
+
   return (
     <div className="form-container">
       <h2>Hoteis Cadastrados </h2>
@@ -71,6 +102,16 @@ export default function Hotel(data) {
               <tr>
                 <th>Foto - 3:</th>
                 <td>{hotel.imagem3 || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th className="th-delete">
+                  <button
+                    className="button-delete"
+                    onClick={() => handleDelete(hotel.id)}
+                  >
+                    DELETAR
+                  </button>
+                </th>
               </tr>
             </tbody>
           </table>

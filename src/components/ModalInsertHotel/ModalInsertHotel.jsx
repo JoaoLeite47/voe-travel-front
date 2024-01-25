@@ -8,9 +8,6 @@ export default function ModalInsertHotel({
   ClienteId,
   clienteNome,
 }) {
-  const [imagem1, setImagem1] = useState("");
-  const [imagem2, setImagem2] = useState("");
-  const [imagem3, setImagem3] = useState("");
   const [endereco, setEndereco] = useState("");
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
@@ -20,14 +17,29 @@ export default function ModalInsertHotel({
   const [cafeDaManha, setCafeDaManha] = useState(false);
   const [valorInicial, setValorInicial] = useState("");
   const [valorFinal, setValorFinal] = useState("");
+  // const [selectedPhoto, setSelectedPhoto] = useState(null);
+  // const [selectedPhoto2, setSelectedPhoto2] = useState(null);
+  // const [selectedPhoto3, setSelectedPhoto3] = useState(null);
+
+  // const handlePhotoChange = (e) => {
+  //   const file = e.target.files[0];
+  //   setSelectedPhoto(file);
+  // };
+  // const handlePhotoChange2 = (e) => {
+  //   const file = e.target.files[0];
+  //   setSelectedPhoto2(file);
+  // };
+  // const handlePhotoChange3 = (e) => {
+  //   const file = e.target.files[0];
+  //   setSelectedPhoto3(file);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       client_id: ClienteId,
-      imagem1: imagem1,
-      imagem2: imagem2,
-      imagem3: imagem3,
+      // imagem1: selectedPhoto,
+      // imagem2: selectedPhoto2,
+      // imagem3: selectedPhoto3,
       endereco: endereco,
       data_inicial: dataInicial,
       data_final: dataFinal,
@@ -63,42 +75,40 @@ export default function ModalInsertHotel({
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <form onSubmit={handleSubmit} className="form-modal-cadastro">
+        <form
+          onSubmit={handleSubmit}
+          className="form-modal-cadastro"
+          encType="multipart/form-data"
+        >
           <h2>Cadastro de Hotel</h2>
           <label className="label-cadastro">Cliente: {clienteNome}</label>
-          <label className="label-cadastro">Foto - 1:</label>
+          {/* <label className="label-cadastro">Foto - 1:</label>
           <input
             className="input-cadastro"
-            type="text"
-            id="imagem1"
+            type="file"
             name="imagem1"
-            value={imagem1}
-            onChange={(e) => {
-              setImagem1(e.target.value);
-            }}
+            accept="image/*"
+            id="photoInput"
+            onChange={handlePhotoChange}
           />
           <label className="label-cadastro">Foto - 2:</label>
           <input
             className="input-cadastro"
-            type="text"
-            id="imagem2"
+            type="file"
             name="imagem2"
-            value={imagem2}
-            onChange={(e) => {
-              setImagem2(e.target.value);
-            }}
+            accept="image/*"
+            id="photoInput2"
+            onChange={handlePhotoChange2}
           />
           <label className="label-cadastro">Foto - 3:</label>
           <input
             className="input-cadastro"
-            type="text"
-            id="imagem3"
+            type="file"
             name="imagem3"
-            value={imagem3}
-            onChange={(e) => {
-              setImagem3(e.target.value);
-            }}
-          />
+            accept="image/*"
+            id="photoInput3"
+            onChange={handlePhotoChange3}
+          /> */}
           <label className="label-cadastro">Endereço:</label>
           <input
             className="input-cadastro"
@@ -172,10 +182,11 @@ export default function ModalInsertHotel({
             className="input-cadastro"
             value={cafeDaManha}
             onChange={(e) => {
-              setCafeDaManha(e.target.value);
+              setCafeDaManha(e.target.value === "true"); // converte para booleano
             }}
             required
           >
+            <option value="">Selecione</option>
             <option value={true}>Sim</option>
             <option value={false}>Não</option>
           </select>

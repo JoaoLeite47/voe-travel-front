@@ -1,10 +1,15 @@
 @import "../../../global.scss";
 
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .dashboard-box {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 2px solid #4779fb;
+  border: 2px solid #336bf8;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;

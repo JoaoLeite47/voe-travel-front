@@ -1,0 +1,54 @@
+.form-container {
+  max-width: 800px;
+  margin-top: 15px;
+  // margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8; /* Adiciona um fundo mais suave */
+  border-radius: 8px; /* Adiciona bordas arredondadas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hotel-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra à tabela */
+  border-radius: 8px; /* Adiciona bordas arredondadas */
+
+  .th-oferta {
+    background-color: #336bf8;
+    color: #fff;
+    border-radius: 8px; /* Adiciona bordas arredondadas */
+  }
+
+  th, td {
+    border: 1px solid #acacac; /* Cor mais suave para as bordas */
+    padding: 12px;
+    text-align: left;
+    border-radius: 8px; /* Adiciona bordas arredondadas */
+  }
+
+  th {
+    background-color: #f5f5f5; /* Cor mais suave para o cabeçalho */
+  }
+
+  @media (max-width: 600px) {
+    th, td {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 8px; /* Adiciona margem inferior para separar as células */
+    }
+
+    th {
+      text-align: center;
+    }
+  }
+}

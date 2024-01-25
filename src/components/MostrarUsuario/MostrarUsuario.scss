@@ -5,7 +5,7 @@
     margin: 0;
 
     .data-item {
-      border: 1px solid #ddd;
+      border: 1px solid  #336bf8;
       padding: 10px;
       margin-bottom: 10px;
       display: flex;
@@ -33,6 +33,7 @@
 
       button {
         // display: flex;
+        margin: 5px;
         align-items: center;
         justify-content: center;
         border: none;
@@ -42,7 +43,7 @@
           font-size: 50px;
           color: black;
           &.atualizar {
-            color: blue;
+            color: #336bf8;
           }
           &.deletar {
             color: red;

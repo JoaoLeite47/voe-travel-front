@@ -4,9 +4,12 @@ import { getHotelByCliente } from "../../services/callsHotel";
 import { getOpcoesAereasByCliente } from "../../services/callsAerea";
 import { getServicosByCliente } from "../../services/callsServicos";
 import ModalInsertHotel from "../ModalInsertHotel/ModalInsertHotel";
+import Hotel from "../Hotel/Hotel";
+import logoImage from "../../assets/imgs/logo.png";
 
 export default function Cliente({ cliente, id }) {
   const [modalHotelOpen, setModalHotelOpen] = useState(false);
+  const [dataHotel, setDataHotel] = useState([]);
 
   const openModalHotel = () => {
     setModalHotelOpen(true);
@@ -16,21 +19,23 @@ export default function Cliente({ cliente, id }) {
     setModalHotelOpen(false);
   };
 
-  //   useEffect(() => {
-  //     const getPavimentarhotel = async () => {
-  //       try {
-  //         const response = await getHotelByCliente(id);
-  //         const hotelData = response.data[0];
-  //         console.log(hotelData);
-  //       } catch (error) {
-  //         console.log("error", error);
-  //       }
-  //     };
+  useEffect(() => {
+    const getPavimentarhotel = async () => {
+      try {
+        const response = await getHotelByCliente(id);
+        const hotelDataArray = response.data.map((hotel) => {
+          return hotel;
+        });
+        setDataHotel(hotelDataArray);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-  //     getPavimentarhotel();
+    getPavimentarhotel();
 
-  //     return () => {};
-  //   }, [id]);
+    return () => {};
+  }, [id]);
 
   //   useEffect(() => {
   //     const getPavimentarOpcoesAereas = async () => {
@@ -66,7 +71,9 @@ export default function Cliente({ cliente, id }) {
 
   return (
     <div className="cliente-container">
-      <h2 className="cliente-title">Adicionar serviços para {cliente}</h2>
+      <img src={logoImage} alt="Logo da empresa" />
+      <h2 className="cliente-title">Adicionar serviços para:</h2>
+      <span className="cliente-span">{cliente}</span>
       <div className="button-container">
         <button className="add-button" onClick={openModalHotel}>
           Adicionar Hotel
@@ -78,8 +85,8 @@ export default function Cliente({ cliente, id }) {
             clienteNome={cliente}
           />
         )}
-        {/* Adicione outros botões para diferentes serviços aqui */}
       </div>
+      <Hotel data={dataHotel} />
     </div>
   );
 }

@@ -57,10 +57,10 @@ const CadastroPessoa = ({ closeModal }) => {
             }}
           />
           <div className="div-buttons">
-            <button className="buttons-cadastro send" type="submit">
+            <button className="buttons-cadastro-home send" type="submit">
               Enviar
             </button>
-            <button className="buttons-cadastro close" onClick={closeModal}>
+            <button className="buttons-cadastro-home close" onClick={closeModal}>
               Fechar
             </button>
           </div>

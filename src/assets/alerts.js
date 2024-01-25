@@ -10,6 +10,16 @@ export const cadastroClienteSucess = () => {
   });
 };
 
+export const cadastroHotelSucess = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Cadastro de Hotel concluído!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
 export const cadastroClienteEroor = () => {
   Swal.fire({
     position: "top-end",

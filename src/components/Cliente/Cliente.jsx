@@ -10,6 +10,7 @@ import logoImage from "../../assets/imgs/logo.png";
 export default function Cliente({ cliente, id }) {
   const [modalHotelOpen, setModalHotelOpen] = useState(false);
   const [dataHotel, setDataHotel] = useState([]);
+  const [showHotelComponent, setShowHotelComponent] = useState(false);
 
   const openModalHotel = () => {
     setModalHotelOpen(true);
@@ -17,6 +18,10 @@ export default function Cliente({ cliente, id }) {
 
   const closeModalHotel = () => {
     setModalHotelOpen(false);
+  };
+
+  const showHotel = () => {
+    setShowHotelComponent(true);
   };
 
   useEffect(() => {
@@ -82,6 +87,13 @@ export default function Cliente({ cliente, id }) {
         >
           Adicionar Hotel
         </button>
+        <button
+          className="add-button"
+          onClick={showHotel}
+          disabled={showHotelComponent}
+        >
+          Mostrar Hotéis
+        </button>
         {modalHotelOpen && (
           <ModalInsertHotel
             closeModalHotel={closeModalHotel}
@@ -90,7 +102,7 @@ export default function Cliente({ cliente, id }) {
           />
         )}
       </div>
-      <Hotel data={dataHotel} />
+      {showHotelComponent && <Hotel data={dataHotel} />}
     </div>
   );
 }

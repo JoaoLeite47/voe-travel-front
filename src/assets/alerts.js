@@ -14,7 +14,7 @@ export const cadastroHotelSucess = () => {
   Swal.fire({
     position: "top-end",
     icon: "success",
-    title: "Cadastro de Hotel concluído!",
+    title: "Cadastro concluído!",
     showConfirmButton: false,
     timer: 1500,
   });

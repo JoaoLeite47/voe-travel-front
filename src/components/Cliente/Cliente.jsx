@@ -6,10 +6,13 @@ import { getServicosByCliente } from "../../services/callsServicos";
 import ModalInsertHotel from "../ModalInsertHotel/ModalInsertHotel";
 import Hotel from "../Hotel/Hotel";
 import logoImage from "../../assets/imgs/logo.png";
+import ModalInsertOpcoesAereas from "../ModalInsertOpcoesAereas/ModalInsertOpcoesAereas";
 
 export default function Cliente({ cliente, id }) {
   const [modalHotelOpen, setModalHotelOpen] = useState(false);
+  const [modalVoosOpen, setModalVoosOpen] = useState(false);
   const [dataHotel, setDataHotel] = useState([]);
+  const [dataVoos, setDataVoos] = useState([]);
   const [showHotelComponent, setShowHotelComponent] = useState(false);
 
   const openModalHotel = () => {
@@ -18,6 +21,13 @@ export default function Cliente({ cliente, id }) {
 
   const closeModalHotel = () => {
     setModalHotelOpen(false);
+  };
+  const openModalVoos = () => {
+    setModalVoosOpen(true);
+  };
+
+  const closeModalVoos = () => {
+    setModalVoosOpen(false);
   };
 
   const showHotel = () => {
@@ -89,6 +99,13 @@ export default function Cliente({ cliente, id }) {
         </button>
         <button
           className="add-button"
+          onClick={openModalVoos}
+          disabled={dataVoos.length === 3}
+        >
+          Adicionar Voos
+        </button>
+        <button
+          className="add-button"
           onClick={showHotel}
           disabled={showHotelComponent}
         >
@@ -97,6 +114,13 @@ export default function Cliente({ cliente, id }) {
         {modalHotelOpen && (
           <ModalInsertHotel
             closeModalHotel={closeModalHotel}
+            ClienteId={id}
+            clienteNome={cliente}
+          />
+        )}
+        {modalVoosOpen && (
+          <ModalInsertOpcoesAereas
+            closeModalVoos={closeModalVoos}
             ClienteId={id}
             clienteNome={cliente}
           />

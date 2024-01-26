@@ -8,12 +8,15 @@ import Hotel from "../Hotel/Hotel";
 import logoImage from "../../assets/imgs/logo.png";
 import ModalInsertOpcoesAereas from "../ModalInsertOpcoesAereas/ModalInsertOpcoesAereas";
 import Voos from "../Voos/Voos";
+import ModalInstertServicos from "../modalInstertServicos/ModalInstertServicos";
 
 export default function Cliente({ cliente, id }) {
   const [modalHotelOpen, setModalHotelOpen] = useState(false);
   const [modalVoosOpen, setModalVoosOpen] = useState(false);
+  const [modalServicosOpen, setModalServicosOpen] = useState(false);
   const [dataHotel, setDataHotel] = useState([]);
   const [dataVoos, setDataVoos] = useState([]);
+  const [dataServicos, setDataServicos] = useState([]);
   const [showHotelComponent, setShowHotelComponent] = useState(false);
   const [showVoosComponent, setShowVoosComponent] = useState(false);
 
@@ -30,6 +33,14 @@ export default function Cliente({ cliente, id }) {
 
   const closeModalVoos = () => {
     setModalVoosOpen(false);
+  };
+
+  const openModalServicos = () => {
+    setModalServicosOpen(true);
+  };
+
+  const closeModalServicos = () => {
+    setModalServicosOpen(false);
   };
 
   const showHotel = () => {
@@ -76,21 +87,23 @@ export default function Cliente({ cliente, id }) {
     return () => {};
   }, [id]);
 
-  //   useEffect(() => {
-  //     const getPavimentarServicos = async () => {
-  //       try {
-  //         const response = await getServicosByCliente(id);
-  //         const opcoesServicos = response.data[0];
-  //         console.log(opcoesServicos);
-  //       } catch (error) {
-  //         console.log("error", error);
-  //       }
-  //     };
+  useEffect(() => {
+    const getPavimentarServicos = async () => {
+      try {
+        const response = await getServicosByCliente(id);
+        const opcoesServicosData = response.data.map((servicos) => {
+          return servicos;
+        });
+        setDataServicos(opcoesServicosData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-  //     getPavimentarServicos();
+    getPavimentarServicos();
 
-  //     return () => {};
-  //   }, [id]);
+    return () => {};
+  }, [id]);
 
   return (
     <div className="cliente-container">
@@ -100,6 +113,13 @@ export default function Cliente({ cliente, id }) {
       <div className="button-container">
         <button
           className="add-button"
+          onClick={openModalVoos}
+          disabled={dataVoos.length === 3}
+        >
+          Adicionar Voos
+        </button>
+        <button
+          className="add-button"
           onClick={openModalHotel}
           disabled={dataHotel.length === 3}
         >
@@ -107,10 +127,10 @@ export default function Cliente({ cliente, id }) {
         </button>
         <button
           className="add-button"
-          onClick={openModalVoos}
-          disabled={dataVoos.length === 3}
+          onClick={openModalServicos}
+          disabled={dataServicos.length === 3}
         >
-          Adicionar Voos
+          Adicionar Serviços
         </button>
         <button
           className="add-button"
@@ -126,6 +146,13 @@ export default function Cliente({ cliente, id }) {
         >
           Mostrar Voos
         </button>
+        {/* <button
+          className="add-button"
+          onClick={showVoos}
+          disabled={showVoosComponent}
+        >
+          Mostrar Serviços
+        </button> */}
         {modalHotelOpen && (
           <ModalInsertHotel
             closeModalHotel={closeModalHotel}
@@ -136,6 +163,13 @@ export default function Cliente({ cliente, id }) {
         {modalVoosOpen && (
           <ModalInsertOpcoesAereas
             closeModalVoos={closeModalVoos}
+            ClienteId={id}
+            clienteNome={cliente}
+          />
+        )}
+        {modalServicosOpen && (
+          <ModalInstertServicos
+            closeModalServicos={closeModalServicos}
             ClienteId={id}
             clienteNome={cliente}
           />

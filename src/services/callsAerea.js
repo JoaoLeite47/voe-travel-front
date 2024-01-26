@@ -36,3 +36,20 @@ export const getOpcoesAereasByCliente = async (id) => {
     return 500;
   }
 };
+
+export const deleteVoo= async (id) => {
+  try {
+    const response = await api.delete(`/opcoes_aereas/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 204) {
+      return 204;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    return 500;
+  }
+};

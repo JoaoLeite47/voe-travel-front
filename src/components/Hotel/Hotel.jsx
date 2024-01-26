@@ -47,7 +47,7 @@ export default function Hotel(data) {
         await deleteHotel(id);
         Swal.fire(
           "Deletado!",
-          "O cliente foi deletado com sucesso.",
+          "O Hotel foi deletado com sucesso.",
           "success"
         );
         setTimeout(() => {

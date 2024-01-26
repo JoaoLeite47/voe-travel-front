@@ -2,6 +2,8 @@ import React from "react";
 import "./Voos.scss";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import Swal from "sweetalert2";
+import { deleteVoo } from "../../services/callsAerea";
 
 export default function Voos({ data }) {
   const formatarData = (data) => {
@@ -12,6 +14,29 @@ export default function Voos({ data }) {
 
     // Converte a data para o padrão brasileiro
     return format(new Date(data), "dd/MM/yyyy", { locale: ptBR });
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const result = await Swal.fire({
+        title: "Tem certeza?",
+        text: "Você não será capaz de reverter isso!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim, deletar!",
+      });
+      if (result.isConfirmed) {
+        await deleteVoo(id);
+        Swal.fire("Deletado!", "O Voo foi deletado com sucesso.", "success");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error("Erro ao exibir o alerta:", error);
+    }
   };
 
   return (
@@ -67,7 +92,7 @@ export default function Voos({ data }) {
                 <td className="th-delete">
                   <button
                     className="button-delete"
-                    // onClick={() => handleDelete(voo.id)}
+                    onClick={() => handleDelete(voo.id)}
                   >
                     Deletar
                   </button>

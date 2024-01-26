@@ -1,5 +1,22 @@
 import api from "./api";
 
+export const getServicoById = async (id) => {
+  try {
+    const response = await api.get(`/servicos/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    return 500;
+  }
+};
+
 export const getServicosByCliente = async (id) => {
   try {
     const response = await api.get(`/servicos_client/${id}`, {
@@ -13,7 +30,6 @@ export const getServicosByCliente = async (id) => {
       return 401;
     }
   } catch (error) {
-    console.log(error);
     return 500;
   }
 };
@@ -27,6 +43,23 @@ export const createServicos = async (data) => {
     });
     if (response.status === 201) {
       return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    return 500;
+  }
+};
+
+export const updateServicos = async (data, id) => {
+  try {
+    const response = await api.patch(`/servicos/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      return 200;
     } else {
       return 401;
     }

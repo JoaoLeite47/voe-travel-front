@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Servicos.scss";
 import Swal from "sweetalert2";
 import { deleteServico } from "../../services/callsServicos";
+import UpdateServicoModal from "../UpdateServicoModal/UpdateServicoModal";
 
 export default function Servicos({ data }) {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedServicoId, setSelectedServicoId] = useState(null);
+  const [clientId, setClienteId] = useState(null);
+
+  const handleUpdate = (id, client) => {
+    setShowUpdateModal(true);
+    setSelectedServicoId(id);
+    setClienteId(client);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+    setSelectedServicoId(null);
+  };
+
   const handleDelete = async (id) => {
     try {
       const result = await Swal.fire({
@@ -101,7 +117,7 @@ export default function Servicos({ data }) {
                 <td className="th-update">
                   <button
                     className="button-update"
-                    // onClick={() => handleUpdate(servico.id, servico.id_client)}
+                    onClick={() => handleUpdate(servico.id, servico.client_id)}
                   >
                     Atualizar
                   </button>
@@ -112,6 +128,13 @@ export default function Servicos({ data }) {
         ))
       ) : (
         <p>Nenhum Serviço disponível.</p>
+      )}
+      {showUpdateModal && (
+        <UpdateServicoModal
+          id={selectedServicoId}
+          handleClose={handleCloseUpdateModal}
+          ClientId={clientId}
+        />
       )}
     </div>
   );

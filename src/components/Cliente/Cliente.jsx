@@ -7,6 +7,7 @@ import ModalInsertHotel from "../ModalInsertHotel/ModalInsertHotel";
 import Hotel from "../Hotel/Hotel";
 import logoImage from "../../assets/imgs/logo.png";
 import ModalInsertOpcoesAereas from "../ModalInsertOpcoesAereas/ModalInsertOpcoesAereas";
+import Voos from "../Voos/Voos";
 
 export default function Cliente({ cliente, id }) {
   const [modalHotelOpen, setModalHotelOpen] = useState(false);
@@ -14,6 +15,7 @@ export default function Cliente({ cliente, id }) {
   const [dataHotel, setDataHotel] = useState([]);
   const [dataVoos, setDataVoos] = useState([]);
   const [showHotelComponent, setShowHotelComponent] = useState(false);
+  const [showVoosComponent, setShowVoosComponent] = useState(false);
 
   const openModalHotel = () => {
     setModalHotelOpen(true);
@@ -34,6 +36,10 @@ export default function Cliente({ cliente, id }) {
     setShowHotelComponent(true);
   };
 
+  const showVoos = () => {
+    setShowVoosComponent(true);
+  };
+
   useEffect(() => {
     const getPavimentarhotel = async () => {
       try {
@@ -52,21 +58,23 @@ export default function Cliente({ cliente, id }) {
     return () => {};
   }, [id]);
 
-  //   useEffect(() => {
-  //     const getPavimentarOpcoesAereas = async () => {
-  //       try {
-  //         const response = await getOpcoesAereasByCliente(id);
-  //         const opcoesAereasData = response.data[0];
-  //         console.log(opcoesAereasData);
-  //       } catch (error) {
-  //         console.log("error", error);
-  //       }
-  //     };
+  useEffect(() => {
+    const getPavimentarOpcoesAereas = async () => {
+      try {
+        const response = await getOpcoesAereasByCliente(id);
+        const opcoesAereasData = response.data.map((voos) => {
+          return voos;
+        });
+        setDataVoos(opcoesAereasData);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
 
-  //     getPavimentarOpcoesAereas();
+    getPavimentarOpcoesAereas();
 
-  //     return () => {};
-  //   }, [id]);
+    return () => {};
+  }, [id]);
 
   //   useEffect(() => {
   //     const getPavimentarServicos = async () => {
@@ -111,6 +119,13 @@ export default function Cliente({ cliente, id }) {
         >
           Mostrar Hotéis
         </button>
+        <button
+          className="add-button"
+          onClick={showVoos}
+          disabled={showVoosComponent}
+        >
+          Mostrar Voos
+        </button>
         {modalHotelOpen && (
           <ModalInsertHotel
             closeModalHotel={closeModalHotel}
@@ -127,6 +142,7 @@ export default function Cliente({ cliente, id }) {
         )}
       </div>
       {showHotelComponent && <Hotel data={dataHotel} />}
+      {showVoosComponent && <Voos data={dataVoos} />}
     </div>
   );
 }

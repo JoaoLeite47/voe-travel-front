@@ -4,8 +4,23 @@ import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import { deleteHotel } from "../../services/callsHotel";
 import Swal from "sweetalert2";
+import UpdateHotelModal from "../UpdateHotelModal/UpdateHotelModal";
 
 export default function Hotel(data) {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedHotelId, setSelectedHotelId] = useState(null);
+  const [clientId, setClienteId] = useState(null);
+
+  const handleUpdate = (id, client) => {
+    setShowUpdateModal(true);
+    setSelectedHotelId(id);
+    setClienteId(client);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+    setSelectedHotelId(null);
+  };
 
   const formatarData = (data) => {
     const formatoDataRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
@@ -104,20 +119,39 @@ export default function Hotel(data) {
                 <td>{hotel.imagem3 || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th className="th-delete">
+                <th>Ações</th>
+                <td className="th-delete">
                   <button
                     className="button-delete"
                     onClick={() => handleDelete(hotel.id)}
                   >
-                    DELETAR
+                    Deletar
                   </button>
-                </th>
+                </td>
+              </tr>
+              <tr>
+                <th>Ações</th>
+                <td className="th-update">
+                  <button
+                    className="button-update"
+                    onClick={() => handleUpdate(hotel.id, hotel.client_id)}
+                  >
+                    Atualizar
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
         ))
       ) : (
         <p>Nenhum hotel disponível.</p>
+      )}
+      {showUpdateModal && (
+        <UpdateHotelModal
+          id={selectedHotelId}
+          handleClose={handleCloseUpdateModal}
+          clientId={clientId}
+        />
       )}
     </div>
   );

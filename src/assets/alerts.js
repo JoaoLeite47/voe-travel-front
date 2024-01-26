@@ -29,3 +29,23 @@ export const cadastroClienteEroor = () => {
     timer: 1500,
   });
 };
+
+export const updateSucess = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Atualizado com sucesso!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
+export const updateEroor = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "Erro na atualização!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};

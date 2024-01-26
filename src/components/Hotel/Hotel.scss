@@ -47,6 +47,16 @@ h2 {
       cursor: pointer;
     }
   }
+  .th-update {
+    background-color: #336bf8;
+    .button-update {
+      color: #fff;
+      font-weight: 600;
+      background-color: #336bf8;
+      border: none;
+      cursor: pointer;
+    }
+  }
 
   @media (max-width: 600px) {
     th,

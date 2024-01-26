@@ -77,7 +77,7 @@ export const createHotel = async (data) => {
 export const updateHotel = async (data, id) => {
   try {
 
-    const response = await api.patch(`opcoes_hoteis/${id}`, data, {
+    const response = await api.patch(`/opcoes_hoteis/${id}`, data, {
       headers: {
         // "Content-Type": "multipart/form-data",
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ export const updateHotel = async (data, id) => {
 
 export const deleteHotel = async (id) => {
   try {
-    const response = await api.delete(`opcoes_hoteis/${id}`, {
+    const response = await api.delete(`/opcoes_hoteis/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },

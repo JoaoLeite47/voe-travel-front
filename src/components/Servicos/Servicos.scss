@@ -1,0 +1,80 @@
+.form-container {
+  max-width: 800px;
+  margin-top: 15px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8; /* Adiciona um fundo mais suave */
+  // border-radius: 8px; /* Adiciona bordas arredondadas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona sombra */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.servicos-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona sombra à tabela */
+  // border-radius: 8px; /* Adiciona bordas arredondadas */
+
+  .th-oferta {
+    background-color: #336bf8;
+    color: #fff;
+  }
+
+  th,
+  td {
+    border: 1px solid #acacac; /* Cor mais suave para as bordas */
+    padding: 12px;
+    text-align: left;
+    // border-radius: 8px; /* Adiciona bordas arredondadas */
+  }
+
+  th {
+    background-color: #f5f5f5; /* Cor mais suave para o cabeçalho */
+  }
+  .th-delete {
+    background-color: red;
+    .button-delete {
+      color: #fff;
+      font-size: 20px;
+      padding: 20px;
+      font-weight: 600;
+      background-color: red;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  .th-update {
+    background-color: #336bf8;
+    .button-update {
+      padding: 20px;
+      font-size: 20px;
+
+      color: #fff;
+      font-weight: 600;
+      background-color: #336bf8;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 600px) {
+    th,
+    td {
+      // display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 8px; /* Adiciona margem inferior para separar as células */
+    }
+
+    th {
+      text-align: center;
+    }
+  }
+}

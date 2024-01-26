@@ -8,13 +8,46 @@ export const createVoo = async (data) => {
       },
     });
     if (response.status === 201) {
-      console.log(response);
+      return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    return 500;
+  }
+};
+
+export const getVoosById = async (id) => {
+  try {
+    const response = await api.get(`/opcoes_aereas/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
       return response;
     } else {
       return 401;
     }
   } catch (error) {
     console.log(error);
+    return 500;
+  }
+};
+
+export const updateVoos = async (data, id) => {
+  try {
+    const response = await api.patch(`/opcoes_aereas/${id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      return 200;
+    } else {
+      return 401;
+    }
+  } catch (error) {
     return 500;
   }
 };
@@ -32,12 +65,11 @@ export const getOpcoesAereasByCliente = async (id) => {
       return 401;
     }
   } catch (error) {
-    console.log(error);
     return 500;
   }
 };
 
-export const deleteVoo= async (id) => {
+export const deleteVoo = async (id) => {
   try {
     const response = await api.delete(`/opcoes_aereas/${id}`, {
       headers: {

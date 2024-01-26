@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Voos.scss";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import Swal from "sweetalert2";
 import { deleteVoo } from "../../services/callsAerea";
+import UpdateVooModal from "../UpdateVooModal/UpdateVooModal";
 
 export default function Voos({ data }) {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedVooId, setSelectedVooId] = useState(null);
+  const [clientId, setClienteId] = useState(null);
+
+  const handleUpdate = (id, client) => {
+    setShowUpdateModal(true);
+    setSelectedVooId(id);
+    setClienteId(client);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setShowUpdateModal(false);
+    setSelectedVooId(null);
+  };
+
   const formatarData = (data) => {
     const formatoDataRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/;
     if (!formatoDataRegex.test(data)) {
@@ -103,7 +119,7 @@ export default function Voos({ data }) {
                 <td className="th-update">
                   <button
                     className="button-update"
-                    // onClick={() => handleUpdate(voo.id, voo.client_id)}
+                    onClick={() => handleUpdate(voo.id, voo.id_client)}
                   >
                     Atualizar
                   </button>
@@ -114,6 +130,13 @@ export default function Voos({ data }) {
         ))
       ) : (
         <p>Nenhum Voo disponível.</p>
+      )}
+      {showUpdateModal && (
+        <UpdateVooModal
+          id={selectedVooId}
+          handleClose={handleCloseUpdateModal}
+          clientId={clientId}
+        />
       )}
     </div>
   );

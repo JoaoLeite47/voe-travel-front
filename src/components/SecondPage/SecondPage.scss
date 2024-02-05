@@ -16,9 +16,15 @@
       font-weight: 600;
       margin-bottom: 10px;
       color: $colorTwo;
+      @media (max-width: 768px) {
+        font-size: 25px;
+      }
     }
     .second-span {
       font-weight: 300;
+      @media (max-width: 768px) {
+        text-align: center;
+      }
     }
     .second-button {
       padding: 15px 30px;

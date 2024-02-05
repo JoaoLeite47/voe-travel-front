@@ -47,13 +47,13 @@ export default function FirstPage() {
               </p>
               <div className="buttons-container">
                 <button className="button">
-                  <FaPlane className="icons"/>
+                  <FaPlane className="icons" />
                 </button>
                 <span className="button-span">Confira sua viagem!</span>
                 <button className="button">
                   <FaWhatsapp className="icons" />
                 </button>
-                <span>nos chame no WhatsApp!</span>
+                <span className="button-span">nos chame no WhatsApp!</span>
               </div>
             </div>
           </div>

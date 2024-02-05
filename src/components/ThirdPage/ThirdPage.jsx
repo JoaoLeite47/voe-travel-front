@@ -38,7 +38,7 @@ export default function ThirdPage() {
             </p>
           </div>
         </div>
-        <div>
+        <div className="div-third-page-2">
           <div>
             <h2 className="h2-third-page">Valores</h2>
             <p className="p-third-page">

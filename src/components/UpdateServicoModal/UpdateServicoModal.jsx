@@ -14,6 +14,8 @@ export default function UpdateServicoModal({ handleClose, id, ClientId }) {
   const [guiasDescricao, setGuiasDescricao] = useState("");
   const [cruzeiros, setCruzeiros] = useState(false);
   const [cruzeirosDescricao, setCruzeirosDescricao] = useState("");
+  const [cafeDaManha, setCafeDaManha] = useState("");
+
   const handleCancel = () => {
     handleClose();
   };
@@ -60,6 +62,7 @@ export default function UpdateServicoModal({ handleClose, id, ClientId }) {
       guias_descricao: guiasDescricao,
       cruzeiros: cruzeiros,
       cruzeiros_descricao: cruzeirosDescricao,
+      cafe_da_manha: cafeDaManha,
     };
 
     try {
@@ -201,6 +204,18 @@ export default function UpdateServicoModal({ handleClose, id, ClientId }) {
               setCruzeirosDescricao(e.target.value);
             }}
           />
+          <label className="label-cadastro">Café da manhã:</label>
+          <select
+            className="input-cadastro"
+            value={cafeDaManha}
+            onChange={(e) => {
+              setCafeDaManha(e.target.value === "true");
+            }}
+          >
+            {/* <option value="">Selecione</option> */}
+            <option value={true}>Sim</option>
+            <option value={false}>Não</option>
+          </select>
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

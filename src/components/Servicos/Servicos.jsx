@@ -100,7 +100,10 @@ export default function Servicos({ data }) {
                 <th>Cruzeiro - Descrição:</th>
                 <td>{servico.cruzeiros_descricao || "Nada Cadastrado"}</td>
               </tr>
-
+              <tr>
+                <th>Café da manhã:</th>
+                <td>{servico.cafe_da_manha ? "Sim" : "Não"}</td>
+              </tr>
               <tr>
                 <th>Ações</th>
                 <td className="th-delete">

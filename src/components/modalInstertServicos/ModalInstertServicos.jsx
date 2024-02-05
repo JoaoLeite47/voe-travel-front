@@ -17,6 +17,7 @@ export default function ModalInstertServicos({
   const [guiasDescricao, setGuiasDescricao] = useState("");
   const [cruzeiros, setCruzeiros] = useState(false);
   const [cruzeirosDescricao, setCruzeirosDescricao] = useState("");
+  const [cafeDaManha, setCafeDaManha] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ export default function ModalInstertServicos({
       guias_descricao: guiasDescricao,
       cruzeiros: cruzeiros,
       cruzeiros_descricao: cruzeirosDescricao,
+      cafe_da_manha: cafeDaManha,
     };
     try {
       const response = await createServicos(data);
@@ -178,6 +180,18 @@ export default function ModalInstertServicos({
               setCruzeirosDescricao(e.target.value);
             }}
           />
+          <label className="label-cadastro">Café da manhã:</label>
+          <select
+            className="input-cadastro"
+            value={cafeDaManha}
+            onChange={(e) => {
+              setCafeDaManha(e.target.value === "true");
+            }}
+          >
+            <option value="">Selecione</option>
+            <option value={true}>Sim</option>
+            <option value={false}>Não</option>
+          </select>
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

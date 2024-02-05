@@ -6,7 +6,12 @@ export default function Header() {
   return (
     <header className="header">
       <div className="logo-container">
-        <img src={logoVoe} alt="Logo" className="logo" />
+        <img
+          src={logoVoe}
+          style={{ width: "70px", height: "70px" }}
+          alt="Logo"
+          className="logo"
+        />
       </div>
     </header>
   );

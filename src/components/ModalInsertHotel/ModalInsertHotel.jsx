@@ -50,21 +50,21 @@ export default function ModalInsertHotel({
       const response = await createHotel(data);
       if (response.status === 201) {
         cadastroHotelSucess();
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 3000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       } else {
         cadastroClienteEroor();
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 3000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
       alert("Falha na comunicação com o servidor");
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 3000);
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
   };
 

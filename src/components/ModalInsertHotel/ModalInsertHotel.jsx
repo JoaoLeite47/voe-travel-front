@@ -15,56 +15,56 @@ export default function ModalInsertHotel({
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
   const [cafeDaManha, setCafeDaManha] = useState(false);
-  // const [selectedPhoto, setSelectedPhoto] = useState(null);
-  // const [selectedPhoto2, setSelectedPhoto2] = useState(null);
-  // const [selectedPhoto3, setSelectedPhoto3] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedPhoto2, setSelectedPhoto2] = useState(null);
+  const [selectedPhoto3, setSelectedPhoto3] = useState(null);
 
-  // const handlePhotoChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setSelectedPhoto(file);
-  // };
-  // const handlePhotoChange2 = (e) => {
-  //   const file = e.target.files[0];
-  //   setSelectedPhoto2(file);
-  // };
-  // const handlePhotoChange3 = (e) => {
-  //   const file = e.target.files[0];
-  //   setSelectedPhoto3(file);
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedPhoto(file);
+  };
+  const handlePhotoChange2 = (e) => {
+    const file = e.target.files[0];
+    setSelectedPhoto2(file);
+  };
+  const handlePhotoChange3 = (e) => {
+    const file = e.target.files[0];
+    setSelectedPhoto3(file);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
       client_id: ClienteId,
-      // imagem1: selectedPhoto,
-      // imagem2: selectedPhoto2,
-      // imagem3: selectedPhoto3,
+      imagem1: selectedPhoto,
+      imagem2: selectedPhoto2,
+      imagem3: selectedPhoto3,
       endereco: endereco,
       data_inicial: dataInicial,
       data_final: dataFinal,
       quarto_escolhido: quartoEscolhido,
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
-      cafe_da_manha: cafeDaManha,
     };
     try {
       const response = await createHotel(data);
       if (response.status === 201) {
         cadastroHotelSucess();
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
       } else {
         cadastroClienteEroor();
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
       }
     } catch (error) {
       console.log(error);
       alert("Falha na comunicação com o servidor");
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 3000);
     }
   };
 
@@ -78,7 +78,7 @@ export default function ModalInsertHotel({
         >
           <h2>Cadastro de Hotel</h2>
           <label className="label-cadastro">Cliente: {clienteNome}</label>
-          {/* <label className="label-cadastro">Foto - 1:</label>
+          <label className="label-cadastro">Foto - 1:</label>
           <input
             className="input-cadastro"
             type="file"
@@ -104,7 +104,7 @@ export default function ModalInsertHotel({
             accept="image/*"
             id="photoInput3"
             onChange={handlePhotoChange3}
-          /> */}
+          />
           <label className="label-cadastro">Endereço:</label>
           <input
             className="input-cadastro"
@@ -173,19 +173,6 @@ export default function ModalInsertHotel({
               setQuartoEscolhidoEndereco(e.target.value);
             }}
           />
-          <label className="label-cadastro">*Café da manhã:</label>
-          <select
-            className="input-cadastro"
-            value={cafeDaManha}
-            onChange={(e) => {
-              setCafeDaManha(e.target.value === "true"); // converte para booleano
-            }}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value={true}>Sim</option>
-            <option value={false}>Não</option>
-          </select>
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

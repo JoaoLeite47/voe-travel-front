@@ -5,12 +5,14 @@ import { updateEroor, updateSucess } from "../../assets/alerts";
 
 export default function UpdateHotelModal({ handleClose, id, clientId }) {
   const [endereco, setEndereco] = useState("");
+  const [imagem1, setImagem1] = useState(null); // Modificado para usar null
+  const [imagem2, setImagem2] = useState(null);
+  const [imagem3, setImagem3] = useState(null);
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
   const [quartoEscolhido, setQuartoEscolhido] = useState("");
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
-  const [cafeDaManha, setCafeDaManha] = useState(false);
 
   const handleCancel = () => {
     handleClose();
@@ -22,12 +24,14 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         const response = await getHotelById(id);
         const hotelData = response.data[0];
         setEndereco(hotelData.endereco || "");
+        setImagem1(hotelData.imagem1 || null); // Modificado para usar null
+        setImagem2(hotelData.imagem2 || null);
+        setImagem3(hotelData.imagem3 || null);
         setDataInicial(hotelData.data_inicial || "");
         setDataFinal(hotelData.data_final || "");
         setQuartoEscolhido(hotelData.quarto_escolhido || "");
         setQuartoEscolhidoTipo(hotelData.quarto_escolhido_tipo || "");
         setQuartoEscolhidoEndereco(hotelData.quarto_escolhido_endereco || "");
-        setCafeDaManha(hotelData.cafe_da_manha || false);
       } catch (error) {
         console.log("error", error);
       }
@@ -50,22 +54,23 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       return;
     }
 
-    const data = {
-      client_id: clientId,
-      // imagem1: selectedPhoto,
-      // imagem2: selectedPhoto2,
-      // imagem3: selectedPhoto3,
-      endereco: endereco,
-      data_inicial: dataInicialDate.toISOString().split("T")[0],
-      data_final: dataFinalDate.toISOString().split("T")[0],
-      quarto_escolhido: quartoEscolhido,
-      quarto_escolhido_tipo: quartoEscolhidoTipo,
-      quarto_escolhido_endereco: quartoEscolhidoEndereco,
-      cafe_da_manha: cafeDaManha,
-    };
+    const formData = new FormData();
+    formData.append("client_id", clientId);
+    formData.append("imagem1", imagem1 || "");
+    formData.append("imagem2", imagem2 || "");
+    formData.append("imagem3", imagem3 || "");
+    formData.append("endereco", endereco);
+    formData.append(
+      "data_inicial",
+      dataInicialDate.toISOString().split("T")[0]
+    );
+    formData.append("data_final", dataFinalDate.toISOString().split("T")[0]);
+    formData.append("quarto_escolhido", quartoEscolhido);
+    formData.append("quarto_escolhido_tipo", quartoEscolhidoTipo);
+    formData.append("quarto_escolhido_endereco", quartoEscolhidoEndereco);
 
     try {
-      const response = await updateHotel(data, id);
+      const response = await updateHotel(formData, id);
       if (response == 200) {
         updateSucess();
         setTimeout(() => {
@@ -85,33 +90,36 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       <div className="modal">
         <form className="form-modal-cadastro" onSubmit={handleUpdate}>
           <h2>Atualizar Hotel</h2>
-          {/* <label className="label-cadastro">Foto - 1:</label>
+          <label className="label-cadastro">Foto - 1:</label>
+          {imagem1 && <img src={imagem1} alt="Imagem 1" />}
           <input
             className="input-cadastro"
             type="file"
             name="imagem1"
             accept="image/*"
             id="photoInput"
-            onChange={handlePhotoChange}
+            onChange={(e) => setImagem1(e.target.files[0])}
           />
           <label className="label-cadastro">Foto - 2:</label>
+          {imagem2 && <img src={imagem2} alt="Imagem 2" />}
           <input
             className="input-cadastro"
             type="file"
             name="imagem2"
             accept="image/*"
             id="photoInput2"
-            onChange={handlePhotoChange2}
+            onChange={(e) => setImagem2(e.target.files[0])}
           />
           <label className="label-cadastro">Foto - 3:</label>
+          {imagem3 && <img src={imagem3} alt="Imagem 3" />}
           <input
             className="input-cadastro"
             type="file"
             name="imagem3"
             accept="image/*"
             id="photoInput3"
-            onChange={handlePhotoChange3}
-          /> */}
+            onChange={(e) => setImagem3(e.target.files[0])}
+          />
           <label className="label-cadastro">Endereço:</label>
           <input
             className="input-cadastro"
@@ -178,19 +186,6 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
               setQuartoEscolhidoEndereco(e.target.value);
             }}
           />
-          <label className="label-cadastro">*Café da manhã:</label>
-          <select
-            className="input-cadastro"
-            value={cafeDaManha}
-            onChange={(e) => {
-              setCafeDaManha(e.target.value === "true"); // converte para booleano
-            }}
-            required
-          >
-            <option value="">Selecione</option>
-            <option value={true}>Sim</option>
-            <option value={false}>Não</option>
-          </select>
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

@@ -45,11 +45,7 @@ export default function Hotel(data) {
       });
       if (result.isConfirmed) {
         await deleteHotel(id);
-        Swal.fire(
-          "Deletado!",
-          "O Hotel foi deletado com sucesso.",
-          "success"
-        );
+        Swal.fire("Deletado!", "O Hotel foi deletado com sucesso.", "success");
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -95,20 +91,55 @@ export default function Hotel(data) {
                 <td>{hotel.quarto_escolhido_endereco || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Café da Manhã:</th>
-                <td>{hotel.cafe_da_manha ? "Sim" : "Não"}</td>
-              </tr>
-              <tr>
                 <th>Foto - 1:</th>
-                <td>{hotel.imagem1 || "Nada Cadastrado"}</td>
+                <td>
+                  {hotel.imagem1 ? (
+                    <img
+                      src={URL.createObjectURL(
+                        new Blob([new Uint8Array(hotel.imagem1.data)], {
+                          type: "image/png",
+                        })
+                      )}
+                      alt="Imagem 1"
+                    />
+                  ) : (
+                    "Nada Cadastrado"
+                  )}
+                </td>
               </tr>
               <tr>
                 <th>Foto - 2:</th>
-                <td>{hotel.imagem2 || "Nada Cadastrado"}</td>
+                <td>
+                  {hotel.imagem2 ? (
+                    <img
+                      src={URL.createObjectURL(
+                        new Blob([new Uint8Array(hotel.imagem2.data)], {
+                          type: "image/png",
+                        })
+                      )}
+                      alt="Imagem 2"
+                    />
+                  ) : (
+                    "Nada Cadastrado"
+                  )}
+                </td>
               </tr>
               <tr>
                 <th>Foto - 3:</th>
-                <td>{hotel.imagem3 || "Nada Cadastrado"}</td>
+                <td>
+                  {hotel.imagem3 ? (
+                    <img
+                      src={URL.createObjectURL(
+                        new Blob([new Uint8Array(hotel.imagem3.data)], {
+                          type: "image/png",
+                        })
+                      )}
+                      alt="Imagem 3"
+                    />
+                  ) : (
+                    "Nada Cadastrado"
+                  )}
+                </td>
               </tr>
               <tr>
                 <th>Ações</th>

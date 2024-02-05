@@ -15,8 +15,6 @@ export default function ModalInsertHotel({
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
   const [cafeDaManha, setCafeDaManha] = useState(false);
-  const [valorInicial, setValorInicial] = useState("");
-  const [valorFinal, setValorFinal] = useState("");
   // const [selectedPhoto, setSelectedPhoto] = useState(null);
   // const [selectedPhoto2, setSelectedPhoto2] = useState(null);
   // const [selectedPhoto3, setSelectedPhoto3] = useState(null);
@@ -47,8 +45,6 @@ export default function ModalInsertHotel({
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
       cafe_da_manha: cafeDaManha,
-      valor_inicial: valorInicial,
-      valor_final: valorFinal,
     };
     try {
       const response = await createHotel(data);
@@ -190,28 +186,6 @@ export default function ModalInsertHotel({
             <option value={true}>Sim</option>
             <option value={false}>Não</option>
           </select>
-          <label className="label-cadastro">Valor - Inicial:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorInicial"
-            name="valorInicial"
-            value={valorInicial}
-            onChange={(e) => {
-              setValorInicial(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Valor Final:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorFinal"
-            name="valorFinal"
-            value={valorFinal}
-            onChange={(e) => {
-              setValorFinal(e.target.value);
-            }}
-          />
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

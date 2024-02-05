@@ -11,8 +11,6 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
   const [cafeDaManha, setCafeDaManha] = useState(false);
-  const [valorInicial, setValorInicial] = useState("");
-  const [valorFinal, setValorFinal] = useState("");
 
   const handleCancel = () => {
     handleClose();
@@ -30,8 +28,6 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         setQuartoEscolhidoTipo(hotelData.quarto_escolhido_tipo || "");
         setQuartoEscolhidoEndereco(hotelData.quarto_escolhido_endereco || "");
         setCafeDaManha(hotelData.cafe_da_manha || false);
-        setValorInicial(hotelData.valor_inicial || "");
-        setValorFinal(hotelData.valor_final || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -66,8 +62,6 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
       cafe_da_manha: cafeDaManha,
-      valor_inicial: valorInicial,
-      valor_final: valorFinal,
     };
 
     try {
@@ -197,28 +191,6 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
             <option value={true}>Sim</option>
             <option value={false}>Não</option>
           </select>
-          <label className="label-cadastro">Valor - Inicial:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorInicial"
-            name="valorInicial"
-            value={valorInicial}
-            onChange={(e) => {
-              setValorInicial(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Valor Final:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorFinal"
-            name="valorFinal"
-            value={valorFinal}
-            onChange={(e) => {
-              setValorFinal(e.target.value);
-            }}
-          />
           <div className="div-buttons">
             <button className="buttons-cadastro send" type="submit">
               Enviar

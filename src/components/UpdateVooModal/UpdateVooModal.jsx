@@ -10,8 +10,6 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
   const [dataFinal, setDataFinal] = useState("");
   const [horarioInicial, setHorarioInicial] = useState("");
   const [horarioFinal, setHorarioFinal] = useState("");
-  const [valorInicial, setValorInicial] = useState("");
-  const [valorFinal, setValorFinal] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
 
   const handleCancel = () => {
@@ -29,8 +27,6 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
         setDataFinal(vooData.data_final || "");
         setHorarioInicial(vooData.horario_inicial || "");
         setHorarioFinal(vooData.horario_final || "");
-        setValorInicial(vooData.valor_inicial || "");
-        setValorFinal(vooData.valor_final || "");
         setCiaAerea(vooData.cia_aerea || "");
       } catch (error) {
         console.log("error", error);
@@ -62,8 +58,6 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
       data_final: dataFinalDate.toISOString().split("T")[0],
       horario_inicial: horarioInicial,
       horario_final: horarioFinal,
-      valor_inicial: valorInicial,
-      valor_final: valorFinal,
       cia_aerea: ciaAerea,
     };
 
@@ -153,28 +147,6 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
             value={horarioFinal}
             onChange={(e) => {
               setHorarioFinal(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Valor - Inicial:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorInicial"
-            name="valorInicial"
-            value={valorInicial}
-            onChange={(e) => {
-              setValorInicial(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Valor Final:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="valorFinal"
-            name="valorFinal"
-            value={valorFinal}
-            onChange={(e) => {
-              setValorFinal(e.target.value);
             }}
           />
           <label className="label-cadastro">CIA:</label>

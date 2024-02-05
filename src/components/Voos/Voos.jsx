@@ -92,14 +92,6 @@ export default function Voos({ data }) {
                 <td>{voo.horario_final || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Valor Inicial:</th>
-                <td>{voo.valor_inicial || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
-                <th>Valor Final:</th>
-                <td>{voo.valor_final || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
                 <th>CIA:</th>
                 <td>{voo.cia_aerea || "Nada Cadastrado"}</td>
               </tr>

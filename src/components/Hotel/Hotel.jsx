@@ -99,14 +99,6 @@ export default function Hotel(data) {
                 <td>{hotel.cafe_da_manha ? "Sim" : "Não"}</td>
               </tr>
               <tr>
-                <th>Valor Inicial:</th>
-                <td>{hotel.valor_inicial || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
-                <th>Valor Final:</th>
-                <td>{hotel.valor_final || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
                 <th>Foto - 1:</th>
                 <td>{hotel.imagem1 || "Nada Cadastrado"}</td>
               </tr>

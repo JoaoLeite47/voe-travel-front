@@ -41,7 +41,7 @@ export const getClient = async () => {
 
 export const deleteClient = async (id) => {
   try {
-    const response = await api.delete(`clientes/${id}`, {
+    const response = await api.delete(`/clientes/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -58,7 +58,7 @@ export const deleteClient = async (id) => {
 
 export const getClientId = async (id) => {
   try {
-    const response = await api.get(`clientes/${id}`, {
+    const response = await api.get(`/clientes/${id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -80,7 +80,7 @@ export const updateClient = async (data, id) => {
   };
 
   try {
-    const response = await api.patch(`clientes/${id}`, dados, {
+    const response = await api.patch(`/clientes/${id}`, dados, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -91,7 +91,25 @@ export const updateClient = async (data, id) => {
       return 401;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    return 500;
+  }
+};
+
+export const sendEmail = async (data) => {
+  try {
+    const response = await api.post(`/enviarEmail`, data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response) {
+      return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    console.log(error);
     return 500;
   }
 };

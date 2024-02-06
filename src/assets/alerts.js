@@ -49,3 +49,23 @@ export const updateEroor = () => {
     timer: 1500,
   });
 };
+
+export const emailSucess = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Email enviado!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
+export const emailError = () => {
+  Swal.fire({
+    position: "top-end",
+    icon: "error",
+    title: "Erro no envio do formulário!",
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};

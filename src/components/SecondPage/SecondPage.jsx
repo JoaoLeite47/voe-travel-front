@@ -1,6 +1,14 @@
 import React from "react";
 import "./SecondPage.scss";
+import { useNavigate } from "react-router-dom";
+
 export default function SecondPage() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/formulario");
+  };
+
   return (
     <div className="second-page-container">
       <div className="second-box">
@@ -8,7 +16,9 @@ export default function SecondPage() {
         <span className="second-span">
           Confira agora a cotação para os destinos mais procurados do mundo!
         </span>
-        <button className="second-button">Preencher Formulário!</button>
+        <button className="second-button" onClick={handleClick}>
+          Preencher Formulário!
+        </button>
       </div>
     </div>
   );

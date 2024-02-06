@@ -1,6 +1,14 @@
 import React from "react";
 import "./SixthPage.scss";
+import { useNavigate } from "react-router-dom";
+
 export default function SixthPage() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/formulario");
+  };
+
   return (
     <div className="sixth-page-container">
       <div className="sixth-box">
@@ -11,7 +19,9 @@ export default function SixthPage() {
           <br /> onde a qualidade, confiabilidade e satisfação do cliente estão
           no centro de tudo que fazemos.
         </span>
-        <button className="sixth-button">Preencher Formulário!</button>
+        <button className="sixth-button" onClick={handleClick}>
+          Preencher Formulário!
+        </button>
       </div>
     </div>
   );

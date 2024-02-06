@@ -6,6 +6,7 @@ import ThirdPage from "../../components/thirdPage/thirdPage";
 import FourthPage from "../../components/FourthPage/FourthPage";
 import FifthPage from "../../components/FifthPage/FifthPage";
 import SixthPage from "../../components/SixthPage/SixthPage";
+import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <FourthPage />
       <FifthPage />
       <SixthPage />
+      <Footer />
     </div>
   );
 }

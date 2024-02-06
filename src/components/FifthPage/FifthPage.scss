@@ -36,15 +36,18 @@
   .images-in-cards {
     width: 300px;
     height: 400px;
+    border: 2px solid #fff;
     @media (max-width: 768px) {
       width: 300px;
       height: 400px;
+      border: 2px solid #fff;
     }
   }
   .overlay {
     position: absolute;
     top: 0;
     left: 0;
+    border: 2px solid #fff;
     width: 300px;
     height: 400px;
     display: flex;

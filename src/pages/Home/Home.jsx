@@ -4,6 +4,8 @@ import FirstPage from "../../components/FirstPage/FirstPage";
 import SecondPage from "../../components/SecondPage/SecondPage";
 import ThirdPage from "../../components/thirdPage/thirdPage";
 import FourthPage from "../../components/FourthPage/FourthPage";
+import FifthPage from "../../components/FifthPage/FifthPage";
+import SixthPage from "../../components/SixthPage/SixthPage";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
       <SecondPage />
       <ThirdPage />
       <FourthPage />
+      <FifthPage />
+      <SixthPage />
     </div>
   );
 }

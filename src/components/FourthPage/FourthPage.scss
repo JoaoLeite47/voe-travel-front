@@ -15,12 +15,12 @@
     height: 130vh;
   }
 
-  .second-box {
+  .second-box-home {
     display: flex;
     align-items: center;
     @media (max-width: 768px) {
-      display: flex;
-      flex-wrap: wrap; /* Allow items to wrap onto the next line */
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       align-items: center;
       justify-content: center; /* Center items horizontally */
     }

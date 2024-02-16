@@ -16,7 +16,7 @@ export default function FourthPage() {
     <div>
       <h2 className="h2-fourth-page">Nossos serviços!</h2>
       <div className="fourth-page-container">
-        <div className="second-box">
+        <div className="second-box-home">
           <div className="category">
             <div className="icon-button">
               <FaPlane className="icon" />

@@ -44,7 +44,7 @@ export default function Valores({ data }) {
 
   return (
     <div className="form-container">
-      <h2>Voos Cadastrados </h2>
+      <h2>Valores Cadastrados </h2>
       {data.length > 0 ? (
         data.map((valores, index) => (
           <table className="voo-table" key={index}>
@@ -60,6 +60,10 @@ export default function Valores({ data }) {
               <tr>
                 <th>Valor Final:</th>
                 <td>{valores.valor_final || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Link Pagamento:</th>
+                <td>{valores.link_pagamento ? "Sim" : "Não"}</td>
               </tr>
               <tr>
                 <th>Ações</th>

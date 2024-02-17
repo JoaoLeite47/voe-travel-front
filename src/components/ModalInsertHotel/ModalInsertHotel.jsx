@@ -14,23 +14,9 @@ export default function ModalInsertHotel({
   const [quartoEscolhido, setQuartoEscolhido] = useState("");
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
-  const [cafeDaManha, setCafeDaManha] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [selectedPhoto2, setSelectedPhoto2] = useState(null);
-  const [selectedPhoto3, setSelectedPhoto3] = useState(null);
-
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedPhoto(file);
-  };
-  const handlePhotoChange2 = (e) => {
-    const file = e.target.files[0];
-    setSelectedPhoto2(file);
-  };
-  const handlePhotoChange3 = (e) => {
-    const file = e.target.files[0];
-    setSelectedPhoto3(file);
-  };
+  const [selectedPhoto, setSelectedPhoto] = useState("");
+  const [selectedPhoto2, setSelectedPhoto2] = useState("");
+  const [selectedPhoto3, setSelectedPhoto3] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,29 +67,32 @@ export default function ModalInsertHotel({
           <label className="label-cadastro">Foto - 1:</label>
           <input
             className="input-cadastro"
-            type="file"
-            name="imagem1"
-            accept="image/*"
+            type="text"
             id="photoInput"
-            onChange={handlePhotoChange}
+            value={selectedPhoto}
+            onChange={(e) => {
+              setSelectedPhoto(e.target.value);
+            }}
           />
           <label className="label-cadastro">Foto - 2:</label>
           <input
             className="input-cadastro"
-            type="file"
-            name="imagem2"
-            accept="image/*"
+            type="text"
             id="photoInput2"
-            onChange={handlePhotoChange2}
+            value={selectedPhoto2}
+            onChange={(e) => {
+              setSelectedPhoto2(e.target.value);
+            }}
           />
           <label className="label-cadastro">Foto - 3:</label>
           <input
             className="input-cadastro"
-            type="file"
-            name="imagem3"
-            accept="image/*"
+            type="text"
             id="photoInput3"
-            onChange={handlePhotoChange3}
+            value={selectedPhoto3}
+            onChange={(e) => {
+              setSelectedPhoto3(e.target.value);
+            }}
           />
           <label className="label-cadastro">Endereço:</label>
           <input

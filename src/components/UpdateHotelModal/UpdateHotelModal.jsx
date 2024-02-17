@@ -5,9 +5,9 @@ import { updateEroor, updateSucess } from "../../assets/alerts";
 
 export default function UpdateHotelModal({ handleClose, id, clientId }) {
   const [endereco, setEndereco] = useState("");
-  const [imagem1, setImagem1] = useState(null); // Modificado para usar null
-  const [imagem2, setImagem2] = useState(null);
-  const [imagem3, setImagem3] = useState(null);
+  const [imagem1, setImagem1] = useState(""); // Modificado para usar null
+  const [imagem2, setImagem2] = useState("");
+  const [imagem3, setImagem3] = useState("");
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
   const [quartoEscolhido, setQuartoEscolhido] = useState("");
@@ -54,23 +54,21 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("client_id", clientId);
-    formData.append("imagem1", imagem1 || "");
-    formData.append("imagem2", imagem2 || "");
-    formData.append("imagem3", imagem3 || "");
-    formData.append("endereco", endereco);
-    formData.append(
-      "data_inicial",
-      dataInicialDate.toISOString().split("T")[0]
-    );
-    formData.append("data_final", dataFinalDate.toISOString().split("T")[0]);
-    formData.append("quarto_escolhido", quartoEscolhido);
-    formData.append("quarto_escolhido_tipo", quartoEscolhidoTipo);
-    formData.append("quarto_escolhido_endereco", quartoEscolhidoEndereco);
+    const data = {
+      client_id: clientId,
+      imagem1: imagem1,
+      imagem2: imagem2,
+      imagem3: imagem3,
+      endereco: endereco,
+      data_inicial: dataInicialDate.toISOString().split("T")[0],
+      data_final: dataFinalDate.toISOString().split("T")[0],
+      quarto_escolhido: quartoEscolhido,
+      quarto_escolhido_tipo: quartoEscolhidoTipo,
+      quarto_escolhido_endereco: quartoEscolhidoEndereco,
+    };
 
     try {
-      const response = await updateHotel(formData, id);
+      const response = await updateHotel(data, id);
       if (response == 200) {
         updateSucess();
         setTimeout(() => {
@@ -91,34 +89,40 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         <form className="form-modal-cadastro" onSubmit={handleUpdate}>
           <h2>Atualizar Hotel</h2>
           <label className="label-cadastro">Foto - 1:</label>
-          {imagem1 && <img src={imagem1} alt="Imagem 1" />}
+          {imagem1 && (
+            <img src={imagem1} alt="Imagem 1" style={{ width: "100px" }} />
+          )}
           <input
             className="input-cadastro"
-            type="file"
+            type="text"
             name="imagem1"
-            accept="image/*"
             id="photoInput"
-            onChange={(e) => setImagem1(e.target.files[0])}
+            value={imagem1}
+            onChange={(e) => setImagem1(e.target.value)}
           />
           <label className="label-cadastro">Foto - 2:</label>
-          {imagem2 && <img src={imagem2} alt="Imagem 2" />}
+          {imagem2 && (
+            <img src={imagem2} alt="Imagem 2" style={{ width: "100px" }} />
+          )}
           <input
             className="input-cadastro"
-            type="file"
+            type="text"
             name="imagem2"
-            accept="image/*"
             id="photoInput2"
-            onChange={(e) => setImagem2(e.target.files[0])}
+            value={imagem2}
+            onChange={(e) => setImagem2(e.target.value)}
           />
           <label className="label-cadastro">Foto - 3:</label>
-          {imagem3 && <img src={imagem3} alt="Imagem 3" />}
+          {imagem3 && (
+            <img src={imagem3} alt="Imagem 3" style={{ width: "100px" }} />
+          )}
           <input
             className="input-cadastro"
-            type="file"
+            type="text"
             name="imagem3"
-            accept="image/*"
             id="photoInput3"
-            onChange={(e) => setImagem3(e.target.files[0])}
+            value={imagem3}
+            onChange={(e) => setImagem3(e.target.value)}
           />
           <label className="label-cadastro">Endereço:</label>
           <input

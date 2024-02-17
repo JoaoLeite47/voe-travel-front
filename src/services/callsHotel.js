@@ -38,24 +38,10 @@ export const getHotelByCliente = async (id) => {
 
 export const createHotel = async (data) => {
   try {
-    const formData = new FormData();
-    formData.append("client_id", data.client_id);
-    formData.append("imagem1", data.imagem1);
-    formData.append("imagem2", data.imagem2);
-    formData.append("imagem3", data.imagem3);
-    formData.append("endereco", data.endereco);
-    formData.append("data_inicial", data.data_inicial);
-    formData.append("data_final", data.data_final);
-    formData.append("quarto_escolhido", data.quarto_escolhido);
-    formData.append("quarto_escolhido_tipo", data.quarto_escolhido_tipo);
-    formData.append(
-      "quarto_escolhido_endereco",
-      data.quarto_escolhido_endereco
-    );
-    const response = await api.post(`/opcoes_hoteis`, formData, {
+    const response = await api.post(`/opcoes_hoteis`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
     if (response.status === 201) {
@@ -70,12 +56,12 @@ export const createHotel = async (data) => {
   }
 };
 
-export const updateHotel = async (formData, id) => {
+export const updateHotel = async (data, id) => {
   try {
-    const response = await api.patch(`/opcoes_hoteis/${id}`, formData, {
+    const response = await api.patch(`/opcoes_hoteis/${id}`, data, {
       headers: {
-        "Content-Type": "multipart/form-data",
-        // "Content-Type": "application/json",
+        // "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     });
     if (response.status === 200) {

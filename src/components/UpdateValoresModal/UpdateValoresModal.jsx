@@ -5,7 +5,7 @@ import { updateEroor, updateSucess } from "../../assets/alerts";
 export default function UpdateValoresModal({ handleClose, id, clientId }) {
   const [valorInicial, setValorInicial] = useState("");
   const [valorFinal, setValorFinal] = useState("");
-  console.log(clientId);
+  const [linkPagamento, setLinkPagamento] = useState("");
 
   const handleCancel = () => {
     handleClose();
@@ -18,6 +18,7 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
         const valoresData = response.data[0];
         setValorInicial(valoresData.valor_inicial || "");
         setValorFinal(valoresData.valor_final || "");
+        setLinkPagamento(valoresData.link_pagamento || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -35,6 +36,7 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
       client_id: clientId,
       valor_inicial: valorInicial,
       valor_final: valorFinal,
+      link_pagamento: linkPagamento,
     };
 
     try {
@@ -79,6 +81,17 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
             value={valorFinal}
             onChange={(e) => {
               setValorFinal(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Link Pagamento:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="valorFinal"
+            name="valorFinal"
+            value={linkPagamento}
+            onChange={(e) => {
+              setLinkPagamento(e.target.value);
             }}
           />
           <div className="div-buttons">

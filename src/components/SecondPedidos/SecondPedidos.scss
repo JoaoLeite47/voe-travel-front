@@ -26,10 +26,16 @@
 .container-content-box-second-pedidos-box {
   display: flex;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
   .div-content-box-second-pedidos-box {
     margin: 10px;
     .p-content-box-second-pedidos {
       font-weight: 300;
+      @media (max-width: 600px) {
+        text-align: center;
+      }
       .span-content-box-second-pedidos {
         font-weight: 600;
       }
@@ -39,11 +45,19 @@
     display: flex;
     align-items: center;
     margin: 20px;
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
     .img-content-box-second-pedidos {
       width: 150px;
       height: 150px;
       margin-left: 10px;
       border: 2px solid #fdab30;
+      @media (max-width: 600px) {
+        margin-bottom: 10px;
+        width: 200px;
+        height: 200px;
+      }
     }
   }
 }

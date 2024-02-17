@@ -91,6 +91,14 @@ export default function Hotel(data) {
                 <td>{hotel.quarto_escolhido_endereco || "Nada Cadastrado"}</td>
               </tr>
               <tr>
+                <th>Nome do hotel:</th>
+                <td>{hotel.nome_do_quarto || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Diarias:</th>
+                <td>{hotel.diarias || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
                 <th>Foto - 1:</th>
                 <td>
                   {hotel.imagem1 ? (

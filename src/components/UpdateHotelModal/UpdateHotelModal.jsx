@@ -5,7 +5,7 @@ import { updateEroor, updateSucess } from "../../assets/alerts";
 
 export default function UpdateHotelModal({ handleClose, id, clientId }) {
   const [endereco, setEndereco] = useState("");
-  const [imagem1, setImagem1] = useState(""); // Modificado para usar null
+  const [imagem1, setImagem1] = useState("");
   const [imagem2, setImagem2] = useState("");
   const [imagem3, setImagem3] = useState("");
   const [dataInicial, setDataInicial] = useState("");
@@ -13,6 +13,8 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
   const [quartoEscolhido, setQuartoEscolhido] = useState("");
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
+  const [nomeDoQuarto, setNomeDoQuarto] = useState("");
+  const [diarias, setDiarias] = useState("");
 
   const handleCancel = () => {
     handleClose();
@@ -24,14 +26,16 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         const response = await getHotelById(id);
         const hotelData = response.data[0];
         setEndereco(hotelData.endereco || "");
-        setImagem1(hotelData.imagem1 || null); // Modificado para usar null
-        setImagem2(hotelData.imagem2 || null);
-        setImagem3(hotelData.imagem3 || null);
+        setImagem1(hotelData.imagem1 || ""); 
+        setImagem2(hotelData.imagem2 || "");
+        setImagem3(hotelData.imagem3 || "");
         setDataInicial(hotelData.data_inicial || "");
         setDataFinal(hotelData.data_final || "");
         setQuartoEscolhido(hotelData.quarto_escolhido || "");
         setQuartoEscolhidoTipo(hotelData.quarto_escolhido_tipo || "");
         setQuartoEscolhidoEndereco(hotelData.quarto_escolhido_endereco || "");
+        setNomeDoQuarto(hotelData.nome_do_quarto || "");
+        setDiarias(hotelData.diarias || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -65,6 +69,8 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       quarto_escolhido: quartoEscolhido,
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
+      nome_do_quarto: nomeDoQuarto,
+      diarias: diarias,
     };
 
     try {
@@ -188,6 +194,30 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
             value={quartoEscolhidoEndereco}
             onChange={(e) => {
               setQuartoEscolhidoEndereco(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Hotel - Nome:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="quartoEscolhidoEndereco"
+            name="quartoEscolhidoEndereco"
+            value={nomeDoQuarto}
+            onChange={(e) => {
+              setNomeDoQuarto(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Diarias:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            min="1"
+            max="100"
+            id="quartoEscolhidoEndereco"
+            name="quartoEscolhidoEndereco"
+            value={diarias}
+            onChange={(e) => {
+              setDiarias(e.target.value);
             }}
           />
           <div className="div-buttons">

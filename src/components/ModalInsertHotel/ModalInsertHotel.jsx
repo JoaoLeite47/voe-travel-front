@@ -14,6 +14,8 @@ export default function ModalInsertHotel({
   const [quartoEscolhido, setQuartoEscolhido] = useState("");
   const [quartoEscolhidoTipo, setQuartoEscolhidoTipo] = useState("");
   const [quartoEscolhidoEndereco, setQuartoEscolhidoEndereco] = useState("");
+  const [nomeDoQuarto, setNomeDoQuarto] = useState("");
+  const [diarias, setDiarias] = useState("");
   const [selectedPhoto, setSelectedPhoto] = useState("");
   const [selectedPhoto2, setSelectedPhoto2] = useState("");
   const [selectedPhoto3, setSelectedPhoto3] = useState("");
@@ -31,6 +33,8 @@ export default function ModalInsertHotel({
       quarto_escolhido: quartoEscolhido,
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
+      nome_do_quarto: nomeDoQuarto,
+      diarias: diarias,
     };
     try {
       const response = await createHotel(data);
@@ -160,6 +164,30 @@ export default function ModalInsertHotel({
             value={quartoEscolhidoEndereco}
             onChange={(e) => {
               setQuartoEscolhidoEndereco(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Hotel - Nome:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="nomeDoQuarto"
+            name="nomeDoQuarto"
+            value={nomeDoQuarto}
+            onChange={(e) => {
+              setNomeDoQuarto(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Diarias:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            min="1"
+            max="100"
+            id="diarias"
+            name="diarias"
+            value={diarias}
+            onChange={(e) => {
+              setDiarias(e.target.value);
             }}
           />
           <div className="div-buttons">

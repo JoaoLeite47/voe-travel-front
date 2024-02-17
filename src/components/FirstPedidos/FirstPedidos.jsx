@@ -3,7 +3,6 @@ import "./FirstPedidos.scss";
 import foto from "../../assets/imgs/foto-1-pedidos-1.jpg";
 
 export default function FirstPedidos({ cliente }) {
-  console.log(cliente);
   return (
     <div
       className="first-pedidos-container"

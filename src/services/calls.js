@@ -113,3 +113,21 @@ export const sendEmail = async (data) => {
     return 500;
   }
 };
+
+export const getPedidosAll = async (pedido) => {
+  try {
+    const response = await api.get(`/clientes_all/${pedido}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status === 200) {
+      return response;
+    } else {
+      return 401;
+    }
+  } catch (error) {
+    console.log(error);
+    return 500;
+  }
+};

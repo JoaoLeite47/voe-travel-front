@@ -4,10 +4,12 @@ import foto1 from "../../assets/imgs/foto-1-page-1.jpg";
 import foto2 from "../../assets/imgs/foto-2-page-1.jpg";
 import foto3 from "../../assets/imgs/foto-3-page-1.jpg";
 import { FaPlane, FaWhatsapp } from "react-icons/fa";
+import FirstPageModal from "./FirstPageModal/FirstPageModal";
 
 export default function FirstPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [fade, setFade] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const slides = [foto1, foto2, foto3];
 
@@ -22,6 +24,14 @@ export default function FirstPage() {
 
     return () => clearInterval(intervalId);
   }, [slides.length]);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="first-page-container">
@@ -46,7 +56,7 @@ export default function FirstPage() {
                 </span>
               </p>
               <div className="buttons-container">
-                <button className="button">
+                <button className="button" onClick={openModal}>
                   <FaPlane className="icons" />
                 </button>
                 <span className="button-span">Confira sua viagem!</span>
@@ -59,6 +69,7 @@ export default function FirstPage() {
           </div>
         </div>
       </div>
+      {isModalOpen && <FirstPageModal closeModal={closeModal} />}
     </div>
   );
 }

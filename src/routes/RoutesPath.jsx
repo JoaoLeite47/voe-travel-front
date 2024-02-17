@@ -4,6 +4,7 @@ import Cadastro from "../pages/Cadastro/Cadastro";
 import CadastroServicos from "../pages/CadastroServicos/CadastroServicos";
 import Home from "../pages/Home/Home";
 import Formulario from "../pages/Formulario/Formulario";
+import ClientePage from "../pages/ClientePage/ClientePage";
 
 export default function RoutesPath() {
   return (
@@ -12,6 +13,7 @@ export default function RoutesPath() {
       <Route path="/cadastro" element={<Cadastro />}></Route>
       <Route path="/cadastroServicos" element={<CadastroServicos />}></Route>
       <Route path="/formulario" element={<Formulario />}></Route>
+      <Route path="/pedidos/:pedido" element={<ClientePage />}></Route>
     </Routes>
   );
 }

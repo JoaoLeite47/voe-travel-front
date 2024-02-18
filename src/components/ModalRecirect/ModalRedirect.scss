@@ -1,0 +1,54 @@
+.first-page-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-page-modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+
+  .h3-first-page-modal {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #000;
+  }
+
+  .input-pedido {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    border-radius: 5px;
+  }
+
+  .buttons-pedido {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    &.enviar {
+      background-color: #4caf50;
+    }
+    &.fechar {
+      background-color: #f44336;
+    }
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+}

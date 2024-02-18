@@ -17,7 +17,14 @@ $primary-color: #4779fb; // Cor principal
       justify-content: center;
     }
   }
-
+  .cadastro {
+    padding: 10px;
+    font-size: 10px;
+    color: green;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
   p {
     margin: 10px 0;
   }

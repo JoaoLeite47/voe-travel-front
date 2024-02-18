@@ -1,8 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import "./Footer.scss";
 import logo from "../../assets/imgs/logo.png";
+import ModalRedirect from "../ModalRecirect/ModalRedirect";
 
 export default function Footer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="footer-container">
       <div className="footer-box">
@@ -21,6 +32,9 @@ export default function Footer() {
             <a href="https://www.facebook.com/voeplustravel">Voe + Travel</a>
           </p>
           <p>CNPJ: 52.794.961/0001-19</p>
+          <button className="cadastro" onClick={openModal}>
+            Cadastro
+          </button>
         </div>
         <div>
           <p>
@@ -30,7 +44,8 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <p> 1.0.0  &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
+      <p> 1.0.0 &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
+      {isModalOpen && <ModalRedirect closeModal={closeModal} />}
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function ThirdPedidos({ voos }) {
-  console.log(voos);
   return (
     <div>
       {voos.map((voo, index) => (

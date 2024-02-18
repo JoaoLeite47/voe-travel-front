@@ -14,7 +14,7 @@ export default function UpdateServicoModal({ handleClose, id, ClientId }) {
   const [guiasDescricao, setGuiasDescricao] = useState("");
   const [cruzeiros, setCruzeiros] = useState(false);
   const [cruzeirosDescricao, setCruzeirosDescricao] = useState("");
-  const [cafeDaManha, setCafeDaManha] = useState("");
+  const [cafeDaManha, setCafeDaManha] = useState(false);
 
   const handleCancel = () => {
     handleClose();
@@ -37,6 +37,7 @@ export default function UpdateServicoModal({ handleClose, id, ClientId }) {
         setGuiasDescricao(servicoData.guias_descricao || "");
         setCruzeiros(servicoData.cruzeiros || false);
         setCruzeirosDescricao(servicoData.cruzeiros_descricao || "");
+        setCafeDaManha(servicoData.cafe_da_manha || false);
       } catch (error) {
         console.log("error", error);
       }

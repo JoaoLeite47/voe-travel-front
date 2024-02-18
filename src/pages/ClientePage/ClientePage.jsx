@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import FirstPedidos from "../../components/FirstPedidos/FirstPedidos";
 import SecondPedidos from "../../components/SecondPedidos/SecondPedidos";
 import ThirdPedidos from "../../components/ThirdPedidos/ThirdPedidos";
+import FourthPedidos from "../../components/FourthPedidos/FourthPedidos";
 
 export default function ClientePage() {
   const { pedido } = useParams();
@@ -23,7 +24,7 @@ export default function ClientePage() {
         setCliente(response.data.cliente);
         setHoteis(response.data.opcoesHoteis);
         setVoos(response.data.opcoesAereas);
-        setServico(response.data.opcoesServico);
+        setServico(response.data.opcoesServicos);
         setValores(response.data.opcoesValores);
       } catch (error) {
         console.log(error);
@@ -38,6 +39,7 @@ export default function ClientePage() {
       <FirstPedidos cliente={cliente} />
       <SecondPedidos hoteis={hoteis} />
       <ThirdPedidos voos={voos} />
+      <FourthPedidos servico={servico} />
       <Footer />
     </div>
   );

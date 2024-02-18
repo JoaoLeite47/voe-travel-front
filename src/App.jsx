@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import RoutesPath from "./routes/routesPath";
+import RoutesPath from "./routes/RoutesPath";
 
 function App() {
   return (

@@ -26,7 +26,7 @@ const cardData = [
 
 export default function FifthPage() {
   return (
-    <div className="third-page-container">
+    <div className="fifth-page-container">
       <div className="content">
         {cardData.map((card, index) => (
           <div key={index} className="card">

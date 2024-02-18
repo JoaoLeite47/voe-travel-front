@@ -3,7 +3,7 @@ import "./ThirdPage.scss";
 
 export default function ThirdPage() {
   return (
-    <div className="third-page-container">
+    <div className="third-page-container-home">
       <div className="content">
         <div>
           <div>
@@ -89,7 +89,9 @@ export default function ThirdPage() {
             </p>
           </div>
           <div>
-            <button className="button-third-page">Fala com a gente! </button>
+            <button className="button-third-page-home">
+              Fala com a gente!
+            </button>
           </div>
         </div>
       </div>

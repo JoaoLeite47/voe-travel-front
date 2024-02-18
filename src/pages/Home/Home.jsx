@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../../components/Header/Header";
 import FirstPage from "../../components/FirstPage/FirstPage";
 import SecondPage from "../../components/SecondPage/SecondPage";
-import ThirdPage from "../../components/thirdPage/thirdPage";
 import FourthPage from "../../components/FourthPage/FourthPage";
 import FifthPage from "../../components/FifthPage/FifthPage";
 import SixthPage from "../../components/SixthPage/SixthPage";
 import Footer from "../../components/Footer/Footer";
+import ThirdPage from "../../components/ThirdPage/ThirdPage";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       <Header />
       <FirstPage />
       <SecondPage />
-      <ThirdPage />
+      <ThirdPage/>
       <FourthPage />
       <FifthPage />
       <SixthPage />

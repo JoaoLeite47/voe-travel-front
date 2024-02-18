@@ -5,6 +5,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import FirstPedidos from "../../components/FirstPedidos/FirstPedidos";
 import SecondPedidos from "../../components/SecondPedidos/SecondPedidos";
+import ThirdPedidos from "../../components/ThirdPedidos/ThirdPedidos";
 
 export default function ClientePage() {
   const { pedido } = useParams();
@@ -36,6 +37,7 @@ export default function ClientePage() {
       <Header />
       <FirstPedidos cliente={cliente} />
       <SecondPedidos hoteis={hoteis} />
+      <ThirdPedidos voos={voos} />
       <Footer />
     </div>
   );

@@ -4,7 +4,6 @@ import { FaHotel } from "react-icons/fa";
 import { format } from "date-fns";
 
 export default function SecondPedidos({ hoteis }) {
-
   return (
     <div>
       {hoteis.map((hotel, index) => (

@@ -7,6 +7,8 @@ import FirstPedidos from "../../components/FirstPedidos/FirstPedidos";
 import SecondPedidos from "../../components/SecondPedidos/SecondPedidos";
 import ThirdPedidos from "../../components/ThirdPedidos/ThirdPedidos";
 import FourthPedidos from "../../components/FourthPedidos/FourthPedidos";
+import FifthPedidos from "../../components/FifthPedidos/FifthPedidos";
+import "./ClientePage.scss";
 
 export default function ClientePage() {
   const { pedido } = useParams();
@@ -34,12 +36,13 @@ export default function ClientePage() {
   }, [pedidoNumber]);
 
   return (
-    <div>
+    <div className="clientPage-Container">
       <Header />
       <FirstPedidos cliente={cliente} />
       <SecondPedidos hoteis={hoteis} />
       <ThirdPedidos voos={voos} />
       <FourthPedidos servico={servico} />
+      <FifthPedidos valores={valores} />
       <Footer />
     </div>
   );

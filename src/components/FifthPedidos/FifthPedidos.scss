@@ -1,0 +1,105 @@
+@import "../../../global.scss";
+
+.fifth-conteiner-father {
+  .box-fifth-page-pedidos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15vh;
+    background-color: $colorTwo;
+    margin-bottom: 15px;
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 15vh;
+    }
+    .h2-fifth-page-pedidos {
+      font-size: 30px;
+      color: #fff;
+      .span-fifth-page-pedidos {
+        color: #000;
+      }
+    }
+  }
+
+  .container-fifth-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+    .p-fifth-page-2 {
+      font-size: 11px;
+      font-weight: 600;
+      .span-fifth-page-2 {
+        color: $colorTwo;
+      }
+    }
+    .container-fifth {
+      display: flex;
+      flex-direction: column;
+
+      .container-valores-button {
+        padding: 10px;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: $colorTwo;
+        color: #fff;
+        margin: 10px 0;
+        .container-valores-button-a {
+          color: inherit; /* herda a cor do texto do elemento pai */
+          text-decoration: none; /* remove a sublinhado padrão */
+        }
+        &:hover {
+          background-color: #fba11a;
+        }
+        @media (max-width: 768px) {
+          margin: 10px;
+          padding: 20px;
+        }
+      }
+
+      .p-fifth-page-1 {
+        font-size: 13px;
+        text-align: center;
+        font-weight: 600;
+        .span-fifth-page-1 {
+          color: $colorTwo;
+        }
+      }
+
+      .container-valores {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+        .valor {
+          font-size: 20px;
+          font-weight: 700;
+
+          &.inicial {
+            color: red;
+            text-decoration: line-through;
+          }
+          &.final {
+            color: green;
+          }
+        }
+      }
+      .container-valores div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -15,7 +15,9 @@ export default function FourthPedidos({ servico }) {
     <div>
       {servico.map((item, index) => (
         <div key={index}>
-          <h2 className="h2-fourth-page-pedidos">Serviços Escolhidos!</h2>
+          <div className="box-fourth-page-pedidos">
+            <h2 className="h2-fourth-page-pedidos">Serviços Escolhidos!</h2>
+          </div>
           <div className="fourth-page-container-pedidos">
             <div className="second-box-home-pedidos">
               <div className="category-pedidos">

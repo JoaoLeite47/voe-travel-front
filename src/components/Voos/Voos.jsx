@@ -84,16 +84,28 @@ export default function Voos({ data }) {
               </tr>
 
               <tr>
-                <th>Horário Inicial:</th>
+                <th>Horário Inicial - Ida:</th>
                 <td>{voo.horario_inicial || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Horário Final:</th>
+                <th>Horário Final - Ida:</th>
                 <td>{voo.horario_final || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Horário Inicial - Retorno:</th>
+                <td>{voo.horario_inicial_volta || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Horário Final - Retorno:</th>
+                <td>{voo.horario_final_volta || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>CIA:</th>
                 <td>{voo.cia_aerea || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Código de reserva:</th>
+                <td>{voo.codigo_reserva || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Ações</th>

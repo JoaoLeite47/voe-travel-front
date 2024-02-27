@@ -14,7 +14,10 @@ export default function ModalInsertOpcoesAereas({
   const [dataFinal, setDataFinal] = useState("");
   const [horarioInicial, setHorarioInicial] = useState("");
   const [horarioFinal, setHorarioFinal] = useState("");
+  const [horarioInicialVolta, setHorarioInicialVolta] = useState("");
+  const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
+  const [codigoReserva, setCodigoReserva] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,6 +30,9 @@ export default function ModalInsertOpcoesAereas({
       horario_inicial: horarioInicial,
       horario_final: horarioFinal,
       cia_aerea: ciaAerea,
+      codigo_reserva: codigoReserva,
+      horario_inicial_volta: horarioInicialVolta,
+      horario_final_volta: horarioFinalVolta,
     };
     try {
       const response = await createVoo(data);
@@ -124,6 +130,28 @@ export default function ModalInsertOpcoesAereas({
             }}
             required
           />
+          <label className="label-cadastro">Horário Inicial - Volta:</label>
+          <input
+            className="input-cadastro"
+            type="time"
+            id="horarioInicialVolta"
+            name="horarioInicialVolta"
+            value={horarioInicialVolta}
+            onChange={(e) => {
+              setHorarioInicialVolta(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Horário Final - Volta:</label>
+          <input
+            className="input-cadastro"
+            type="time"
+            id="horarioFinalVolta"
+            name="horarioFinalVolta"
+            value={horarioFinalVolta}
+            onChange={(e) => {
+              setHorarioFinalVolta(e.target.value);
+            }}
+          />
           <label className="label-cadastro">CIA:</label>
           <input
             className="input-cadastro"
@@ -133,6 +161,17 @@ export default function ModalInsertOpcoesAereas({
             value={ciaAerea}
             onChange={(e) => {
               setCiaAerea(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Codigo de reserva:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="codigoReserva"
+            name="codigoReserva"
+            value={codigoReserva}
+            onChange={(e) => {
+              setCodigoReserva(e.target.value);
             }}
           />
           <div className="div-buttons">

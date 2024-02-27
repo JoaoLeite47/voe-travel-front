@@ -10,7 +10,10 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
   const [dataFinal, setDataFinal] = useState("");
   const [horarioInicial, setHorarioInicial] = useState("");
   const [horarioFinal, setHorarioFinal] = useState("");
+  const [horarioInicialVolta, setHorarioInicialVolta] = useState("");
+  const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
+  const [codigoReserva, setCodigoReserva] = useState("");
 
   const handleCancel = () => {
     handleClose();
@@ -26,8 +29,11 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
         setDataInicial(vooData.data_inicial || "");
         setDataFinal(vooData.data_final || "");
         setHorarioInicial(vooData.horario_inicial || "");
+        setHorarioInicialVolta(vooData.horario_inicial_volta || "");
+        setHorarioFinalVolta(vooData.horario_final_volta || "");
         setHorarioFinal(vooData.horario_final || "");
         setCiaAerea(vooData.cia_aerea || "");
+        setCodigoReserva(vooData.codigo_reserva || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -57,8 +63,11 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
       data_inicial: dataInicialDate.toISOString().split("T")[0],
       data_final: dataFinalDate.toISOString().split("T")[0],
       horario_inicial: horarioInicial,
+      horario_inicial_volta: horarioInicialVolta,
       horario_final: horarioFinal,
+      horario_final_volta: horarioFinalVolta,
       cia_aerea: ciaAerea,
+      codigo_reserva: codigoReserva,
     };
 
     try {
@@ -149,6 +158,28 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
               setHorarioFinal(e.target.value);
             }}
           />
+          <label className="label-cadastro">Horário Inicial - Volta:</label>
+          <input
+            className="input-cadastro"
+            type="time"
+            id="horarioInicialVolta"
+            name="horarioInicialVolta"
+            value={horarioInicialVolta}
+            onChange={(e) => {
+              setHorarioInicialVolta(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Horário Final - Volta:</label>
+          <input
+            className="input-cadastro"
+            type="time"
+            id="horarioFinalVolta"
+            name="horarioFinalVolta"
+            value={horarioFinalVolta}
+            onChange={(e) => {
+              setHorarioFinalVolta(e.target.value);
+            }}
+          />
           <label className="label-cadastro">CIA:</label>
           <input
             className="input-cadastro"
@@ -158,6 +189,17 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
             value={ciaAerea}
             onChange={(e) => {
               setCiaAerea(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Código de reserva:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="codigoReserva"
+            name="codigoReserva"
+            value={codigoReserva}
+            onChange={(e) => {
+              setCodigoReserva(e.target.value);
             }}
           />
           <div className="div-buttons">

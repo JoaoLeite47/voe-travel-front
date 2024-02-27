@@ -38,15 +38,29 @@ export default function ThirdPedidos({ voos }) {
               </div>
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Horário inicial:{" "}
+                  Horário inicial - Ida:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.horario_inicial}
                   </span>
                 </p>
                 <p className="p-content-box-third-pedidos">
-                  Horário Final:{" "}
+                  Horário Final - Ida:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.horario_final}
+                  </span>
+                </p>
+              </div>
+              <div className="div-content-box-third-pedidos-box">
+                <p className="p-content-box-third-pedidos">
+                  Horário inicial - Retorno:{" "}
+                  <span className="span-content-box-third-pedidos">
+                    {voo.horario_inicial_volta}
+                  </span>
+                </p>
+                <p className="p-content-box-third-pedidos">
+                  Horário Final - Retorno:{" "}
+                  <span className="span-content-box-third-pedidos">
+                    {voo.horario_final_volta}
                   </span>
                 </p>
               </div>
@@ -69,6 +83,12 @@ export default function ThirdPedidos({ voos }) {
                   CIA:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.cia_aerea}
+                  </span>
+                </p>
+                <p className="p-content-box-third-pedidos">
+                  Código de Reserva:{" "}
+                  <span className="span-content-box-third-pedidos">
+                    {voo.codigo_reserva}
                   </span>
                 </p>
               </div>

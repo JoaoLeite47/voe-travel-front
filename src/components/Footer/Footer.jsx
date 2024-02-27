@@ -44,7 +44,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <p> 1.0.0 &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
+      <p> 1.1.0 &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
       {isModalOpen && <ModalRedirect closeModal={closeModal} />}
     </div>
   );

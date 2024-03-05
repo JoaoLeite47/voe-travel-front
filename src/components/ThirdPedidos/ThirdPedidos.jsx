@@ -19,6 +19,12 @@ export default function ThirdPedidos({ voos }) {
                 <FaPlane />
               </span>
             </h3>
+            <p className="p-content-box-third-pedidos">
+              Código de Reserva:{" "}
+              <span className="span-content-box-third-pedidos">
+                {voo.codigo_reserva}
+              </span>
+            </p>
           </div>
           <div>
             <div className="container-div-content-box-third-pedidos-box">
@@ -38,27 +44,28 @@ export default function ThirdPedidos({ voos }) {
               </div>
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Horário Ida:{" "}
+                  Embarque:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.horario_inicial}
                   </span>
                 </p>
                 <p className="p-content-box-third-pedidos">
-                  Horário Final - Ida:{" "}
+                  Embarque:{" "}
                   <span className="span-content-box-third-pedidos">
-                    {voo.horario_final}
+                    {voo.horario_inicial_volta}
                   </span>
                 </p>
               </div>
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Horário inicial - Retorno:{" "}
+                  Desembarque:{" "}
                   <span className="span-content-box-third-pedidos">
-                    {voo.horario_inicial_volta}
+                    {voo.horario_final}
                   </span>
                 </p>
+
                 <p className="p-content-box-third-pedidos">
-                  Horário Final - Retorno:{" "}
+                  Desembarque:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.horario_final_volta}
                   </span>
@@ -83,12 +90,6 @@ export default function ThirdPedidos({ voos }) {
                   CIA:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.cia_aerea}
-                  </span>
-                </p>
-                <p className="p-content-box-third-pedidos">
-                  Código de Reserva:{" "}
-                  <span className="span-content-box-third-pedidos">
-                    {voo.codigo_reserva}
                   </span>
                 </p>
               </div>

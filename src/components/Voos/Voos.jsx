@@ -67,12 +67,12 @@ export default function Voos({ data }) {
                 <td>N.{index}</td>
               </tr>
               <tr>
-                <th>Origem:</th>
-                <td>{voo.origem || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
                 <th>Destino:</th>
                 <td>{voo.destino || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Origem:</th>
+                <td>{voo.origem || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Data Inicial:</th>

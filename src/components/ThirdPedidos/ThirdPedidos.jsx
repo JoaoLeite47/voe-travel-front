@@ -24,13 +24,13 @@ export default function ThirdPedidos({ voos }) {
             <div className="container-div-content-box-third-pedidos-box">
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Data inicial:{" "}
+                  Data de ída:{" "}
                   <span className="span-content-box-third-pedidos">
                     {format(new Date(voo.data_inicial), "dd/MM/yyyy")}
                   </span>
                 </p>
                 <p className="p-content-box-third-pedidos">
-                  Data final:{" "}
+                  Data de retorno:{" "}
                   <span className="span-content-box-third-pedidos">
                     {format(new Date(voo.data_final), "dd/MM/yyyy")}
                   </span>
@@ -38,7 +38,7 @@ export default function ThirdPedidos({ voos }) {
               </div>
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Horário inicial - Ida:{" "}
+                  Horário Ida:{" "}
                   <span className="span-content-box-third-pedidos">
                     {voo.horario_inicial}
                   </span>
@@ -66,15 +66,15 @@ export default function ThirdPedidos({ voos }) {
               </div>
               <div className="div-content-box-third-pedidos-box">
                 <p className="p-content-box-third-pedidos">
-                  Destino:{" "}
-                  <span className="span-content-box-third-pedidos viagem">
-                    <FaArrowRight /> {voo.destino}
-                  </span>
-                </p>
-                <p className="p-content-box-third-pedidos">
                   Origem:{" "}
                   <span className="span-content-box-third-pedidos origem">
                     <FaArrowLeft /> {voo.origem}
+                  </span>
+                </p>
+                <p className="p-content-box-third-pedidos">
+                  Destino:{" "}
+                  <span className="span-content-box-third-pedidos viagem">
+                    <FaArrowRight /> {voo.destino}
                   </span>
                 </p>
               </div>

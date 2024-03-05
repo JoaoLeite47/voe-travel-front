@@ -20,7 +20,7 @@ export default function Footer() {
         <div>
           <img src={logo} alt="logo" />
           <p>Email: Flaviocaribe@voemaistravel.com.br</p>
-          <p>Celular: (ddd) 0 0000-0000</p>
+          <p>Celular: (71)98442-0817 </p>
           <p>
             Instagram:{" "}
             <a href="https://www.instagram.com/voemaistravel_">
@@ -44,7 +44,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <p> 1.1.0 &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
+      <p> 1.1.1 &copy; Voe + Travel 2024 Alguns direitos reservados.</p>
       {isModalOpen && <ModalRedirect closeModal={closeModal} />}
     </div>
   );

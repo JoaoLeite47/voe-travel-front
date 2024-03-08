@@ -108,6 +108,14 @@ export default function Voos({ data }) {
                 <td>{voo.codigo_reserva || "Nada Cadastrado"}</td>
               </tr>
               <tr>
+                <th>Bagagem de mão:</th>
+                <td>{voo.bagagem_mao || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Bagagem despachada:</th>
+                <td>{voo.bagagem_desp || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
                 <th>Ações</th>
                 <td className="th-delete">
                   <button

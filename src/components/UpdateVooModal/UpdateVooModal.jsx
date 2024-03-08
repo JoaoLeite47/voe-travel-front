@@ -14,6 +14,8 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
   const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
   const [codigoReserva, setCodigoReserva] = useState("");
+  const [bagagemMao, setBagagemMao] = useState(0);
+  const [bagagemDesp, setBagagemDesp] = useState(0);
 
   const handleCancel = () => {
     handleClose();
@@ -34,6 +36,8 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
         setHorarioFinal(vooData.horario_final || "");
         setCiaAerea(vooData.cia_aerea || "");
         setCodigoReserva(vooData.codigo_reserva || "");
+        setBagagemMao(vooData.bagagem_mao || "");
+        setBagagemDesp(vooData.bagagem_desp || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -68,6 +72,8 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
       horario_final_volta: horarioFinalVolta,
       cia_aerea: ciaAerea,
       codigo_reserva: codigoReserva,
+      bagagem_mao: Number(bagagemMao),
+      bagagem_desp: Number(bagagemDesp),
     };
 
     try {
@@ -200,6 +206,28 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
             value={codigoReserva}
             onChange={(e) => {
               setCodigoReserva(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Bagagem de mão:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            id="bagagemMao"
+            name="bagagemMao"
+            value={bagagemMao}
+            onChange={(e) => {
+              setBagagemMao(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Bagagem Despachada:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            id="bagagemDesp"
+            name="bagagemDesp"
+            value={bagagemDesp}
+            onChange={(e) => {
+              setBagagemDesp(e.target.value);
             }}
           />
           <div className="div-buttons">

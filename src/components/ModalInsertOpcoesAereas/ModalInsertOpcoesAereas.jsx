@@ -18,6 +18,8 @@ export default function ModalInsertOpcoesAereas({
   const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
   const [codigoReserva, setCodigoReserva] = useState("");
+  const [bagagemMao, setBagagemMao] = useState(0);
+  const [bagagemDesp, setBagagemDesp] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,8 @@ export default function ModalInsertOpcoesAereas({
       codigo_reserva: codigoReserva,
       horario_inicial_volta: horarioInicialVolta,
       horario_final_volta: horarioFinalVolta,
+      bagagem_mao: Number(bagagemMao),
+      bagagem_desp: Number(bagagemDesp),
     };
     try {
       const response = await createVoo(data);
@@ -172,6 +176,28 @@ export default function ModalInsertOpcoesAereas({
             value={codigoReserva}
             onChange={(e) => {
               setCodigoReserva(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Bagagem de mão:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            id="bagagemMao"
+            name="bagagemMao"
+            value={bagagemMao}
+            onChange={(e) => {
+              setBagagemMao(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Bagagem Despachada:</label>
+          <input
+            className="input-cadastro"
+            type="number"
+            id="bagagemDesp"
+            name="bagagemDesp"
+            value={bagagemDesp}
+            onChange={(e) => {
+              setBagagemDesp(e.target.value);
             }}
           />
           <div className="div-buttons">

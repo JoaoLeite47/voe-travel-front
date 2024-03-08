@@ -90,7 +90,9 @@ export default function ThirdPage() {
           </div>
           <div>
             <button className="button-third-page-home">
-              Fala com a gente!
+              <a href="https://contate.me/voetravel" target="_blank" className="link-contact">
+                Fala com a gente!
+              </a>
             </button>
           </div>
         </div>

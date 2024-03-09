@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./UpdateVooModal.scss";
-import { getVoosById, updateVoos } from "../../services/callsAerea";
+import { getConexaoById } from "../../services/callsConexoes";
 import { updateEroor, updateSucess } from "../../assets/alerts";
 
-export default function UpdateVooModal({ handleClose, id, clientId }) {
-  const [origem, setOrigem] = useState("");
+export default function UpdateConexaoModal(id, handleClose, voo) {
   const [destino, setDestino] = useState("");
-  const [dataInicial, setDataInicial] = useState("");
-  const [dataFinal, setDataFinal] = useState("");
-  const [horarioInicial, setHorarioInicial] = useState("");
-  const [horarioFinal, setHorarioFinal] = useState("");
-  const [horarioInicialVolta, setHorarioInicialVolta] = useState("");
-  const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
+  const [dataVoo, setDataVoo] = useState("");
+  const [horarioSaida, setHoriarioSaida] = useState("");
+  const [horarioChegada, setHorarioChegada] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
   const [codigoReserva, setCodigoReserva] = useState("");
   const [bagagemMao, setBagagemMao] = useState(0);
@@ -22,18 +17,14 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
   };
 
   useEffect(() => {
-    const getPavimentarVoo = async () => {
+    const getPavimentarConexao = async () => {
       try {
-        const response = await getVoosById(id);
+        const response = await getConexaoById(id);
         const vooData = response.data[0];
-        setOrigem(vooData.origem || "");
         setDestino(vooData.destino || "");
-        setDataInicial(vooData.data_inicial || "");
-        setDataFinal(vooData.data_final || "");
-        setHorarioInicial(vooData.horario_inicial || "");
-        setHorarioInicialVolta(vooData.horario_inicial_volta || "");
-        setHorarioFinalVolta(vooData.horario_final_volta || "");
-        setHorarioFinal(vooData.horario_final || "");
+        setDataVoo(vooData.data_voo || "");
+        setHoriarioSaida(vooData.horario_saida || "");
+        setHorarioChegada(vooData.horario_chegada || "");
         setCiaAerea(vooData.cia_aerea || "");
         setCodigoReserva(vooData.codigo_reserva || "");
         setBagagemMao(vooData.bagagem_mao || "");
@@ -43,7 +34,7 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
       }
     };
 
-    getPavimentarVoo();
+    getPavimentarConexao();
 
     return () => {};
   }, [id]);
@@ -51,64 +42,49 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const dataInicialDate = new Date(dataInicial);
-    const dataFinalDate = new Date(dataFinal);
+    const dataInicialDate = new Date(dataVoo);
 
     // Certifique-se de que os objetos Date foram criados corretamente
-    if (isNaN(dataInicialDate) || isNaN(dataFinalDate)) {
+    if (isNaN(dataInicialDate)) {
       console.error("Erro ao converter datas para objetos Date.");
       return;
     }
 
     const data = {
-      id_client: clientId,
-      origem: origem,
+      id_voo: voo,
+      origem: vooOrigem,
       destino: destino,
-      data_inicial: dataInicialDate.toISOString().split("T")[0],
-      data_final: dataFinalDate.toISOString().split("T")[0],
-      horario_inicial: horarioInicial,
-      horario_inicial_volta: horarioInicialVolta,
-      horario_final: horarioFinal,
-      horario_final_volta: horarioFinalVolta,
+      data_voo: dataInicialDate.toISOString().split("T")[0],
+      horario_saida: horarioSaida,
+      horario_chegada: horarioChegada,
       cia_aerea: ciaAerea,
       codigo_reserva: codigoReserva,
       bagagem_mao: Number(bagagemMao),
       bagagem_desp: Number(bagagemDesp),
     };
 
-    try {
-      const response = await updateVoos(data, id);
-      if (response == 200) {
-        updateSucess();
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-      }
-    } catch (error) {
-      console.log(error);
-      updateEroor();
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-    }
+    // try {
+    //   const response = await updateVoos(data, id);
+    //   if (response == 200) {
+    //     updateSucess();
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 3000);
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   updateEroor();
+    //   setTimeout(() => {
+    //     window.location.reload();
+    //   }, 3000);
+    // }
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal">
         <form className="form-modal-cadastro" onSubmit={handleUpdate}>
-          <h2>Atualizar Voo</h2>
-          <label className="label-cadastro">origem:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="origem"
-            name="origem"
-            value={origem}
-            onChange={(e) => {
-              setOrigem(e.target.value);
-            }}
-          />
+          <h2>Atualizar Conexões</h2>
           <label className="label-cadastro">Destino:</label>
           <input
             className="input-cadastro"
@@ -120,70 +96,38 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
               setDestino(e.target.value);
             }}
           />
-          <label className="label-cadastro">*Data Inicial:</label>
+          <label className="label-cadastro">*Data:</label>
           <input
             className="input-cadastro"
             type="date"
             id="dataInicial"
             name="dataInicial"
-            value={dataInicial}
+            value={dataVoo}
             onChange={(e) => {
-              setDataInicial(e.target.value);
+              setDataVoo(e.target.value);
             }}
+            required
           />
-          <label className="label-cadastro">*Data Final:</label>
-          <input
-            className="input-cadastro"
-            type="date"
-            id="dataFinal"
-            name="dataFinal"
-            value={dataFinal}
-            onChange={(e) => {
-              setDataFinal(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Horário Inicial:</label>
+          <label className="label-cadastro">Horário Saída:</label>
           <input
             className="input-cadastro"
             type="time"
             id="horarioInicial"
             name="horarioInicial"
-            value={horarioInicial}
+            value={horarioSaida}
             onChange={(e) => {
-              setHorarioInicial(e.target.value);
+              setHoriarioSaida(e.target.value);
             }}
           />
-          <label className="label-cadastro">Horário Final:</label>
+          <label className="label-cadastro">Horário Chegada:</label>
           <input
             className="input-cadastro"
             type="time"
             id="horarioFinal"
             name="horarioFinal"
-            value={horarioFinal}
+            value={horarioChegada}
             onChange={(e) => {
-              setHorarioFinal(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Horário Inicial - Volta:</label>
-          <input
-            className="input-cadastro"
-            type="time"
-            id="horarioInicialVolta"
-            name="horarioInicialVolta"
-            value={horarioInicialVolta}
-            onChange={(e) => {
-              setHorarioInicialVolta(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Horário Final - Volta:</label>
-          <input
-            className="input-cadastro"
-            type="time"
-            id="horarioFinalVolta"
-            name="horarioFinalVolta"
-            value={horarioFinalVolta}
-            onChange={(e) => {
-              setHorarioFinalVolta(e.target.value);
+              setHorarioChegada(e.target.value);
             }}
           />
           <label className="label-cadastro">CIA:</label>
@@ -197,7 +141,7 @@ export default function UpdateVooModal({ handleClose, id, clientId }) {
               setCiaAerea(e.target.value);
             }}
           />
-          <label className="label-cadastro">Código de reserva:</label>
+          <label className="label-cadastro">Codigo de reserva:</label>
           <input
             className="input-cadastro"
             type="text"

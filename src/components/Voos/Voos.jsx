@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Voos.scss";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
 import Swal from "sweetalert2";
 import { deleteVoo } from "../../services/callsAerea";
 import UpdateVooModal from "../UpdateVooModal/UpdateVooModal";
+import ModalInsertConexoes from "../ModalInsertConexoes/ModalInsertConexoes";
+import Conexoes from "../Conexoes/Conexoes";
+import { getConexoesById } from "../../services/callsConexoes";
 
 export default function Voos({ data }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showConexoesModal, setShowConexoesModal] = useState(false);
   const [selectedVooId, setSelectedVooId] = useState(null);
   const [clientId, setClienteId] = useState(null);
+  const [origem, setOrigem] = useState(null);
+  const [dataVoos, setDataVoos] = useState([]);
+  const [showVoosComponent, setShowVoosComponent] = useState(false);
 
   const handleUpdate = (id, client) => {
     setShowUpdateModal(true);
@@ -17,8 +24,19 @@ export default function Voos({ data }) {
     setClienteId(client);
   };
 
+  const handleClickConexoes = (id, origem) => {
+    setShowConexoesModal(true);
+    setSelectedVooId(id);
+    setOrigem(origem);
+  };
+
   const handleCloseUpdateModal = () => {
     setShowUpdateModal(false);
+    setSelectedVooId(null);
+  };
+
+  const handleCloseConexoesModal = () => {
+    setShowConexoesModal(false);
     setSelectedVooId(null);
   };
 
@@ -55,6 +73,31 @@ export default function Voos({ data }) {
     }
   };
 
+  const showVoos = (id) => {
+    setSelectedVooId(id);
+    setShowVoosComponent(true);
+  };
+
+  useEffect(() => {
+    const getPavimentarConexao = async () => {
+      try {
+        if (selectedVooId !== null) {
+          const response = await getConexoesById(selectedVooId);
+          const conexaoData = response.data.map((conexoes) => {
+            return conexoes;
+          });
+          setDataVoos(conexaoData);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    getPavimentarConexao();
+
+    return () => {};
+  }, [selectedVooId]);
+
   return (
     <div className="form-container">
       <h2>Voos Cadastrados </h2>
@@ -67,12 +110,12 @@ export default function Voos({ data }) {
                 <td>N.{index}</td>
               </tr>
               <tr>
-                <th>Origem:</th>
-                <td>{voo.origem || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
                 <th>Destino:</th>
                 <td>{voo.destino || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Origem:</th>
+                <td>{voo.origem || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Data Inicial:</th>
@@ -108,6 +151,14 @@ export default function Voos({ data }) {
                 <td>{voo.codigo_reserva || "Nada Cadastrado"}</td>
               </tr>
               <tr>
+                <th>Bagagem de mão:</th>
+                <td>{voo.bagagem_mao || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
+                <th>Bagagem despachada:</th>
+                <td>{voo.bagagem_desp || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
                 <th>Ações</th>
                 <td className="th-delete">
                   <button
@@ -129,6 +180,28 @@ export default function Voos({ data }) {
                   </button>
                 </td>
               </tr>
+              <tr>
+                <th>Cadastro</th>
+                <td className="th-conexoes">
+                  <button
+                    className="button-conexoes"
+                    onClick={() => handleClickConexoes(voo.id, voo.origem)}
+                  >
+                    Conexão
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <th>Conexões</th>
+                <td className="th-conexoes">
+                  <button
+                    className="button-conexoes"
+                    onClick={() => showVoos(voo.id)}
+                  >
+                    Mostrar Conexões
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         ))
@@ -142,6 +215,14 @@ export default function Voos({ data }) {
           clientId={clientId}
         />
       )}
+      {showConexoesModal && (
+        <ModalInsertConexoes
+          voo_id={selectedVooId}
+          handleClose={handleCloseConexoesModal}
+          vooOrigem={origem}
+        />
+      )}
+      {showVoosComponent && <Conexoes data={dataVoos} />}
     </div>
   );
 }

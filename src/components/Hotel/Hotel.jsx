@@ -79,20 +79,20 @@ export default function Hotel(data) {
                 <td>{formatarData(hotel.data_final) || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Quarto Escolhido:</th>
+                <th>Hotel:</th>
                 <td>{hotel.quarto_escolhido || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Tipo de Quarto:</th>
                 <td>{hotel.quarto_escolhido_tipo || "Nada Cadastrado"}</td>
               </tr>
-              <tr>
-                <th>Endereço do Quarto:</th>
+              {/* <tr>
+                <th>Endereço do hotel:</th>
                 <td>{hotel.quarto_escolhido_endereco || "Nada Cadastrado"}</td>
-              </tr>
+              </tr> */}
               <tr>
-                <th>Nome do hotel:</th>
-                <td>{hotel.nome_do_quarto || "Nada Cadastrado"}</td>
+                <th>Codigo de Reserva:</th>
+                <td>{hotel.codigo_reserva || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Diarias:</th>

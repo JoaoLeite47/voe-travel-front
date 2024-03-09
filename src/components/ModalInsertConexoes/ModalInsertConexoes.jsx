@@ -1,21 +1,17 @@
 import React, { useState } from "react";
-import "./ModalInsertOpcoesAereas.scss";
 import { cadastroClienteEroor, cadastroHotelSucess } from "../../assets/alerts";
-import { createVoo } from "../../services/callsAerea";
+import "./ModalInsertConexoes.scss";
+import { createConexao } from "../../services/callsConexoes";
 
-export default function ModalInsertOpcoesAereas({
-  closeModalVoos,
-  ClienteId,
-  clienteNome,
+export default function ModalInsertConexoes({
+  voo_id,
+  handleClose,
+  vooOrigem,
 }) {
-  const [origem, setOrigem] = useState("");
   const [destino, setDestino] = useState("");
-  const [dataInicial, setDataInicial] = useState("");
-  const [dataFinal, setDataFinal] = useState("");
-  const [horarioInicial, setHorarioInicial] = useState("");
-  const [horarioFinal, setHorarioFinal] = useState("");
-  const [horarioInicialVolta, setHorarioInicialVolta] = useState("");
-  const [horarioFinalVolta, setHorarioFinalVolta] = useState("");
+  const [dataVoo, setDataVoo] = useState("");
+  const [horarioSaida, setHoriarioSaida] = useState("");
+  const [horarioChegada, setHorarioChegada] = useState("");
   const [ciaAerea, setCiaAerea] = useState("");
   const [codigoReserva, setCodigoReserva] = useState("");
   const [bagagemMao, setBagagemMao] = useState(0);
@@ -24,22 +20,19 @@ export default function ModalInsertOpcoesAereas({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = {
-      id_client: ClienteId,
-      origem: origem,
+      id_voo: voo_id,
+      origem: vooOrigem,
       destino: destino,
-      data_inicial: dataInicial,
-      data_final: dataFinal,
-      horario_inicial: horarioInicial,
-      horario_final: horarioFinal,
+      data_voo: dataVoo,
+      horario_saida: horarioSaida,
+      horario_chegada: horarioChegada,
       cia_aerea: ciaAerea,
       codigo_reserva: codigoReserva,
-      horario_inicial_volta: horarioInicialVolta,
-      horario_final_volta: horarioFinalVolta,
       bagagem_mao: Number(bagagemMao),
       bagagem_desp: Number(bagagemDesp),
     };
     try {
-      const response = await createVoo(data);
+      const response = await createConexao(data);
       if (response.status === 201) {
         cadastroHotelSucess();
         setTimeout(() => {
@@ -64,19 +57,8 @@ export default function ModalInsertOpcoesAereas({
     <div className="modal-overlay">
       <div className="modal">
         <form className="form-modal-cadastro" onSubmit={handleSubmit}>
-          <h2>Cadastro de Voos</h2>
-          <label className="label-cadastro">Cliente: {clienteNome}</label>
-          <label className="label-cadastro">Origem:</label>
-          <input
-            className="input-cadastro"
-            type="text"
-            id="origem"
-            name="origem"
-            value={origem}
-            onChange={(e) => {
-              setOrigem(e.target.value);
-            }}
-          />
+          <h2>Cadastro de Conexões</h2>
+          <label className="label-cadastro">Conexão do voo: {vooOrigem}</label>
           <label className="label-cadastro">Destino:</label>
           <input
             className="input-cadastro"
@@ -88,72 +70,38 @@ export default function ModalInsertOpcoesAereas({
               setDestino(e.target.value);
             }}
           />
-          <label className="label-cadastro">*Data Inicial:</label>
+          <label className="label-cadastro">*Data:</label>
           <input
             className="input-cadastro"
             type="date"
             id="dataInicial"
             name="dataInicial"
-            value={dataInicial}
+            value={dataVoo}
             onChange={(e) => {
-              setDataInicial(e.target.value);
+              setDataVoo(e.target.value);
             }}
             required
           />
-          <label className="label-cadastro">Horário Inicial:</label>
+          <label className="label-cadastro">Horário Saída:</label>
           <input
             className="input-cadastro"
             type="time"
             id="horarioInicial"
             name="horarioInicial"
-            value={horarioInicial}
+            value={horarioSaida}
             onChange={(e) => {
-              setHorarioInicial(e.target.value);
+              setHoriarioSaida(e.target.value);
             }}
           />
-          <label className="label-cadastro">Horário Final:</label>
+          <label className="label-cadastro">Horário Chegada:</label>
           <input
             className="input-cadastro"
             type="time"
             id="horarioFinal"
             name="horarioFinal"
-            value={horarioFinal}
+            value={horarioChegada}
             onChange={(e) => {
-              setHorarioFinal(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">*Data Final:</label>
-          <input
-            className="input-cadastro"
-            type="date"
-            id="dataFinal"
-            name="dataFinal"
-            value={dataFinal}
-            onChange={(e) => {
-              setDataFinal(e.target.value);
-            }}
-            required
-          />
-          <label className="label-cadastro">Horário Inicial - Volta:</label>
-          <input
-            className="input-cadastro"
-            type="time"
-            id="horarioInicialVolta"
-            name="horarioInicialVolta"
-            value={horarioInicialVolta}
-            onChange={(e) => {
-              setHorarioInicialVolta(e.target.value);
-            }}
-          />
-          <label className="label-cadastro">Horário Final - Volta:</label>
-          <input
-            className="input-cadastro"
-            type="time"
-            id="horarioFinalVolta"
-            name="horarioFinalVolta"
-            value={horarioFinalVolta}
-            onChange={(e) => {
-              setHorarioFinalVolta(e.target.value);
+              setHorarioChegada(e.target.value);
             }}
           />
           <label className="label-cadastro">CIA:</label>
@@ -204,7 +152,7 @@ export default function ModalInsertOpcoesAereas({
             <button className="buttons-cadastro send" type="submit">
               Enviar
             </button>
-            <button className="buttons-cadastro close" onClick={closeModalVoos}>
+            <button className="buttons-cadastro close" onClick={handleClose}>
               Fechar
             </button>
           </div>

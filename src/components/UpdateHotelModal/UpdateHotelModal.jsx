@@ -26,7 +26,7 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         const response = await getHotelById(id);
         const hotelData = response.data[0];
         setEndereco(hotelData.endereco || "");
-        setImagem1(hotelData.imagem1 || ""); 
+        setImagem1(hotelData.imagem1 || "");
         setImagem2(hotelData.imagem2 || "");
         setImagem3(hotelData.imagem3 || "");
         setDataInicial(hotelData.data_inicial || "");
@@ -34,7 +34,7 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
         setQuartoEscolhido(hotelData.quarto_escolhido || "");
         setQuartoEscolhidoTipo(hotelData.quarto_escolhido_tipo || "");
         setQuartoEscolhidoEndereco(hotelData.quarto_escolhido_endereco || "");
-        setNomeDoQuarto(hotelData.nome_do_quarto || "");
+        setNomeDoQuarto(hotelData.codigo_reserva || "");
         setDiarias(hotelData.diarias || "");
       } catch (error) {
         console.log("error", error);
@@ -69,7 +69,7 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
       quarto_escolhido: quartoEscolhido,
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
-      nome_do_quarto: nomeDoQuarto,
+      codigo_reserva: nomeDoQuarto,
       diarias: diarias,
     };
 
@@ -163,7 +163,7 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
               setDataFinal(e.target.value);
             }}
           />
-          <label className="label-cadastro">Quarto:</label>
+          <label className="label-cadastro">Hotel:</label>
           <input
             className="input-cadastro"
             type="text"
@@ -185,7 +185,7 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
               setQuartoEscolhidoTipo(e.target.value);
             }}
           />
-          <label className="label-cadastro">Quarto - Endereço:</label>
+          {/* <label className="label-cadastro">Hotel - Endereço:</label>
           <input
             className="input-cadastro"
             type="text"
@@ -195,8 +195,8 @@ export default function UpdateHotelModal({ handleClose, id, clientId }) {
             onChange={(e) => {
               setQuartoEscolhidoEndereco(e.target.value);
             }}
-          />
-          <label className="label-cadastro">Hotel - Nome:</label>
+          /> */}
+          <label className="label-cadastro">Código de Reserva:</label>
           <input
             className="input-cadastro"
             type="text"

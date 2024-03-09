@@ -61,9 +61,11 @@ export default function FirstPage() {
                 </button>
                 <span className="button-span">Confira sua viagem!</span>
                 <button className="button">
-                  <FaWhatsapp className="icons" />
+                  <a href="https://contate.me/voetravel" target="_blank">
+                    <FaWhatsapp className="icons" />
+                  </a>
                 </button>
-                <span className="button-span">nos chame no WhatsApp!</span>
+                <span className="button-span">Nos chame no WhatsApp!</span>
               </div>
             </div>
           </div>

@@ -155,7 +155,7 @@ export default function ModalInsertHotel({
               setQuartoEscolhidoTipo(e.target.value);
             }}
           />
-          <label className="label-cadastro">Hotel - Endereço:</label>
+          {/* <label className="label-cadastro">Hotel - Endereço:</label>
           <input
             className="input-cadastro"
             type="text"
@@ -165,7 +165,7 @@ export default function ModalInsertHotel({
             onChange={(e) => {
               setQuartoEscolhidoEndereco(e.target.value);
             }}
-          />
+          /> */}
           <label className="label-cadastro">Código de reserva:</label>
           <input
             className="input-cadastro"

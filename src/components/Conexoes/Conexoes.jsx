@@ -2,22 +2,24 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
+import { deleteConexao } from "../../services/callsConexoes";
+import UpdateConexaoModal from "../UpdateConexaoModal/UpdateConexaoModal";
 
 export default function Conexoes({ data }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedVooId, setSelectedVooId] = useState(null);
-  const [clientId, setClienteId] = useState(null);
-  console.log(data);
+  const [vooId, setVooId] = useState(null);
 
-  const handleUpdate = (id, client) => {
+  const handleUpdate = (id, voo) => {
+    setVooId(voo);
     setShowUpdateModal(true);
     setSelectedVooId(id);
-    setClienteId(client);
   };
 
   const handleCloseUpdateModal = () => {
     setShowUpdateModal(false);
     setSelectedVooId(null);
+    setVooId(null);
   };
 
   const formatarData = (data) => {
@@ -42,8 +44,12 @@ export default function Conexoes({ data }) {
         confirmButtonText: "Sim, deletar!",
       });
       if (result.isConfirmed) {
-        await deleteVoo(id);
-        Swal.fire("Deletado!", "O Voo foi deletado com sucesso.", "success");
+        await deleteConexao(id);
+        Swal.fire(
+          "Deletado!",
+          "a conexão foi deletada com sucesso.",
+          "success"
+        );
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -112,30 +118,30 @@ export default function Conexoes({ data }) {
                   </button>
                 </td>
               </tr>
-              <tr>
+              {/* <tr>
                 <th>Ações</th>
                 <td className="th-update">
                   <button
                     className="button-update"
-                    onClick={() => handleUpdate(voo.id, voo.id_client)}
+                    onClick={() => handleUpdate(voo.id, voo.id_voo)}
                   >
                     Atualizar
                   </button>
                 </td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         ))
       ) : (
-        <p>Nenhum Voo disponível.</p>
+        <p>Nenhuma Conexão disponível.</p>
       )}
-      {showUpdateModal && (
-        <UpdateVooModal
+      {/* {showUpdateModal && (
+        <UpdateConexaoModal
           id={selectedVooId}
           handleClose={handleCloseUpdateModal}
-          clientId={clientId}
+          voo={vooId}
         />
-      )}
+      )} */}
     </div>
   );
 }

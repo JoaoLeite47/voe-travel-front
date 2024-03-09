@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./Voos.scss";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 import { format } from "date-fns";
 import ptBR from "date-fns/locale/pt-BR";
-import Swal from "sweetalert2";
-import { deleteVoo } from "../../services/callsAerea";
-import UpdateVooModal from "../UpdateVooModal/UpdateVooModal";
-import ModalInsertConexoes from "../ModalInsertConexoes/ModalInsertConexoes";
-import Conexoes from "../Conexoes/Conexoes";
-import { getConexoesById } from "../../services/callsConexoes";
 
-export default function Voos({ data }) {
+export default function Conexoes({ data }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [showConexoesModal, setShowConexoesModal] = useState(false);
   const [selectedVooId, setSelectedVooId] = useState(null);
   const [clientId, setClienteId] = useState(null);
-  const [origem, setOrigem] = useState(null);
-  const [dataVoos, setDataVoos] = useState([]);
-  const [showVoosComponent, setShowVoosComponent] = useState(false);
+  console.log(data);
 
   const handleUpdate = (id, client) => {
     setShowUpdateModal(true);
@@ -24,19 +15,8 @@ export default function Voos({ data }) {
     setClienteId(client);
   };
 
-  const handleClickConexoes = (id, origem) => {
-    setShowConexoesModal(true);
-    setSelectedVooId(id);
-    setOrigem(origem);
-  };
-
   const handleCloseUpdateModal = () => {
     setShowUpdateModal(false);
-    setSelectedVooId(null);
-  };
-
-  const handleCloseConexoesModal = () => {
-    setShowConexoesModal(false);
     setSelectedVooId(null);
   };
 
@@ -73,40 +53,15 @@ export default function Voos({ data }) {
     }
   };
 
-  const showVoos = (id) => {
-    setSelectedVooId(id);
-    setShowVoosComponent(true);
-  };
-
-  useEffect(() => {
-    const getPavimentarConexao = async () => {
-      try {
-        if (selectedVooId !== null) {
-          const response = await getConexoesById(selectedVooId);
-          const conexaoData = response.data.map((conexoes) => {
-            return conexoes;
-          });
-          setDataVoos(conexaoData);
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    getPavimentarConexao();
-
-    return () => {};
-  }, [selectedVooId]);
-
   return (
     <div className="form-container">
-      <h2>Voos Cadastrados </h2>
+      <h2>Conexões Cadastradas </h2>
       {data.length > 0 ? (
         data.map((voo, index) => (
           <table className="voo-table" key={index}>
             <tbody>
               <tr>
-                <th className="th-oferta">Oferta:</th>
+                <th className="th-oferta">Conexão:</th>
                 <td>N.{index}</td>
               </tr>
               <tr>
@@ -118,29 +73,17 @@ export default function Voos({ data }) {
                 <td>{voo.origem || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Data Inicial:</th>
-                <td>{formatarData(voo.data_inicial) || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
-                <th>Data Final:</th>
-                <td>{formatarData(voo.data_final) || "Nada Cadastrado"}</td>
+                <th>Data:</th>
+                <td>{formatarData(voo.data_voo) || "Nada Cadastrado"}</td>
               </tr>
 
               <tr>
-                <th>Horário Inicial - Ida:</th>
-                <td>{voo.horario_inicial || "Nada Cadastrado"}</td>
+                <th>Horário saída:</th>
+                <td>{voo.horario_saida || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Horário Final - Ida:</th>
-                <td>{voo.horario_final || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
-                <th>Horário Inicial - Retorno:</th>
-                <td>{voo.horario_inicial_volta || "Nada Cadastrado"}</td>
-              </tr>
-              <tr>
-                <th>Horário Final - Retorno:</th>
-                <td>{voo.horario_final_volta || "Nada Cadastrado"}</td>
+                <th>Horário Chegada:</th>
+                <td>{voo.horario_chegada || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>CIA:</th>
@@ -180,28 +123,6 @@ export default function Voos({ data }) {
                   </button>
                 </td>
               </tr>
-              <tr>
-                <th>Cadastro</th>
-                <td className="th-conexoes">
-                  <button
-                    className="button-conexoes"
-                    onClick={() => handleClickConexoes(voo.id, voo.origem)}
-                  >
-                    Conexão
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th>Conexões</th>
-                <td className="th-conexoes">
-                  <button
-                    className="button-conexoes"
-                    onClick={() => showVoos(voo.id)}
-                  >
-                    Mostrar Conexões
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
         ))
@@ -215,14 +136,6 @@ export default function Voos({ data }) {
           clientId={clientId}
         />
       )}
-      {showConexoesModal && (
-        <ModalInsertConexoes
-          voo_id={selectedVooId}
-          handleClose={handleCloseConexoesModal}
-          vooOrigem={origem}
-        />
-      )}
-      {showVoosComponent && <Conexoes data={dataVoos} />}
     </div>
   );
 }

@@ -92,6 +92,18 @@ export default function ThirdPedidos({ voos }) {
                     {voo.cia_aerea}
                   </span>
                 </p>
+                <p className="p-content-box-third-pedidos">
+                  Bagagem de mão:{" "}
+                  <span className="span-content-box-third-pedidos">
+                    {voo.bagagem_mao}
+                  </span>
+                </p>
+                <p className="p-content-box-third-pedidos">
+                  Bagagem despachada:{" "}
+                  <span className="span-content-box-third-pedidos">
+                    {voo.bagagem_desp}
+                  </span>
+                </p>
               </div>
             </div>
           </div>

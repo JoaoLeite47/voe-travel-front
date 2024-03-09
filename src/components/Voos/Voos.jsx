@@ -5,11 +5,14 @@ import ptBR from "date-fns/locale/pt-BR";
 import Swal from "sweetalert2";
 import { deleteVoo } from "../../services/callsAerea";
 import UpdateVooModal from "../UpdateVooModal/UpdateVooModal";
+import ModalInsertConexoes from "../ModalInsertConexoes/ModalInsertConexoes";
 
 export default function Voos({ data }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showConexoesModal, setShowConexoesModal] = useState(false);
   const [selectedVooId, setSelectedVooId] = useState(null);
   const [clientId, setClienteId] = useState(null);
+  const [origem, setOrigem] = useState(null);
 
   const handleUpdate = (id, client) => {
     setShowUpdateModal(true);
@@ -17,8 +20,19 @@ export default function Voos({ data }) {
     setClienteId(client);
   };
 
+  const handleClickConexoes = (id, origem) => {
+    setShowConexoesModal(true);
+    setSelectedVooId(id);
+    setOrigem(origem);
+  };
+
   const handleCloseUpdateModal = () => {
     setShowUpdateModal(false);
+    setSelectedVooId(null);
+  };
+
+  const handleCloseConexoesModal = () => {
+    setShowConexoesModal(false);
     setSelectedVooId(null);
   };
 
@@ -137,6 +151,17 @@ export default function Voos({ data }) {
                   </button>
                 </td>
               </tr>
+              <tr>
+                <th>Conexões</th>
+                <td className="th-conexoes">
+                  <button
+                    className="button-conexoes"
+                    onClick={() => handleClickConexoes(voo.id, voo.origem)}
+                  >
+                    Conexão
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         ))
@@ -148,6 +173,13 @@ export default function Voos({ data }) {
           id={selectedVooId}
           handleClose={handleCloseUpdateModal}
           clientId={clientId}
+        />
+      )}
+      {showConexoesModal && (
+        <ModalInsertConexoes
+        voo_id={selectedVooId}
+          handleClose={handleCloseConexoesModal}
+          vooOrigem={origem}
         />
       )}
     </div>

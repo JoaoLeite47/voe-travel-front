@@ -33,7 +33,7 @@ export default function ModalInsertHotel({
       quarto_escolhido: quartoEscolhido,
       quarto_escolhido_tipo: quartoEscolhidoTipo,
       quarto_escolhido_endereco: quartoEscolhidoEndereco,
-      nome_do_quarto: nomeDoQuarto,
+      codigo_reserva: nomeDoQuarto,
       diarias: diarias,
     };
     try {
@@ -133,7 +133,7 @@ export default function ModalInsertHotel({
             }}
             required
           />
-          <label className="label-cadastro">Quarto:</label>
+          <label className="label-cadastro">Hotel:</label>
           <input
             className="input-cadastro"
             type="text"
@@ -155,7 +155,7 @@ export default function ModalInsertHotel({
               setQuartoEscolhidoTipo(e.target.value);
             }}
           />
-          <label className="label-cadastro">Quarto - Endereço:</label>
+          <label className="label-cadastro">Hotel - Endereço:</label>
           <input
             className="input-cadastro"
             type="text"
@@ -166,7 +166,7 @@ export default function ModalInsertHotel({
               setQuartoEscolhidoEndereco(e.target.value);
             }}
           />
-          <label className="label-cadastro">Hotel - Nome:</label>
+          <label className="label-cadastro">Código de reserva:</label>
           <input
             className="input-cadastro"
             type="text"

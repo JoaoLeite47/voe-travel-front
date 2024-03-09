@@ -91,8 +91,8 @@ export default function Hotel(data) {
                 <td>{hotel.quarto_escolhido_endereco || "Nada Cadastrado"}</td>
               </tr>
               <tr>
-                <th>Nome do hotel:</th>
-                <td>{hotel.nome_do_quarto || "Nada Cadastrado"}</td>
+                <th>Codigo de Reserva:</th>
+                <td>{hotel.codigo_reserva || "Nada Cadastrado"}</td>
               </tr>
               <tr>
                 <th>Diarias:</th>

@@ -22,9 +22,9 @@ export default function SecondPedidos({ hoteis }) {
             <div className="container-content-box-second-pedidos-box">
               <div className="div-content-box-second-pedidos-box">
                 <p className="p-content-box-second-pedidos">
-                  Nome do Hotel:{" "}
+                  Código de reserva:{" "}
                   <span className="span-content-box-second-pedidos">
-                    {hotel.nome_do_quarto}
+                    {hotel.codigo_reserva}
                   </span>
                 </p>
                 <p className="p-content-box-second-pedidos">
@@ -52,9 +52,15 @@ export default function SecondPedidos({ hoteis }) {
                   </span>
                 </p>
                 <p className="p-content-box-second-pedidos">
-                  Quarto escolhido:{" "}
+                  Hotel:{" "}
                   <span className="span-content-box-second-pedidos">
                     {hotel.quarto_escolhido}
+                  </span>
+                </p>
+                <p className="p-content-box-second-pedidos">
+                  Tipo do quarto:{" "}
+                  <span className="span-content-box-second-pedidos">
+                    {hotel.quarto_tipo}
                   </span>
                 </p>
               </div>

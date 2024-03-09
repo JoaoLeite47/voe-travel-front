@@ -29,17 +29,18 @@ export default function FifthPedidos({ valores }) {
                 <h1 className="valor">Oferta n. {index + 1}</h1>
                 <h2 className="valor inicial">R$ {valor.valor_inicial}</h2>
                 <h2 className="valor final">R$ {valor.valor_final}</h2>
-                <button className="container-valores-button" type="submit">
-                  <a
-                    href={valor.link_pagamento}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="container-valores-button-a"
-                  >
-                    {" "}
-                    Comprar Agora!
-                  </a>
-                </button>
+                {valor.link_pagamento !== "" && (
+                  <button className="container-valores-button" type="submit">
+                    <a
+                      href={valor.link_pagamento}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="container-valores-button-a"
+                    >
+                      Comprar Agora!
+                    </a>
+                  </button>
+                )}
               </div>
             ))}
           </div>

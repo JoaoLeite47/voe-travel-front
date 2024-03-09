@@ -6,6 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
 export default function ThirdPedidos({ voos }) {
+  console.log(voos);
   return (
     <div>
       {voos.map((voo, index) => (
@@ -19,12 +20,14 @@ export default function ThirdPedidos({ voos }) {
                 <FaPlane />
               </span>
             </h3>
-            <p className="p-content-box-third-pedidos">
-              Código de Reserva:{" "}
-              <span className="span-content-box-third-pedidos">
-                {voo.codigo_reserva}
-              </span>
-            </p>
+            {voo.codigo_reserva !== "" && (
+              <p className="p-content-box-third-pedidos">
+                Código de Reserva:{" "}
+                <span className="span-content-box-third-pedidos">
+                  {voo.codigo_reserva}
+                </span>
+              </p>
+            )}
           </div>
           <div>
             <div className="container-div-content-box-third-pedidos-box">

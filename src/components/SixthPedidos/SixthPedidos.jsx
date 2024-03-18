@@ -6,7 +6,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import "./SixthPedidos.scss";
 
 export default function SixthPedidos({ conexao }) {
-  console.log(conexao);
   return (
     <div>
       {conexao.map((conexoes, index) => (

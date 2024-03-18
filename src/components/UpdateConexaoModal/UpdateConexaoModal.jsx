@@ -3,6 +3,7 @@ import { getConexaoById } from "../../services/callsConexoes";
 import { updateEroor, updateSucess } from "../../assets/alerts";
 
 export default function UpdateConexaoModal(id, handleClose, voo) {
+  const [origem, setOrigem] = useState("");
   const [destino, setDestino] = useState("");
   const [dataVoo, setDataVoo] = useState("");
   const [horarioSaida, setHoriarioSaida] = useState("");
@@ -22,6 +23,7 @@ export default function UpdateConexaoModal(id, handleClose, voo) {
         const response = await getConexaoById(id);
         const vooData = response.data[0];
         setDestino(vooData.destino || "");
+        setOrigem(vooData.origem || "");
         setDataVoo(vooData.data_voo || "");
         setHoriarioSaida(vooData.horario_saida || "");
         setHorarioChegada(vooData.horario_chegada || "");
@@ -52,7 +54,7 @@ export default function UpdateConexaoModal(id, handleClose, voo) {
 
     const data = {
       id_voo: voo,
-      origem: vooOrigem,
+      origem: origem,
       destino: destino,
       data_voo: dataInicialDate.toISOString().split("T")[0],
       horario_saida: horarioSaida,

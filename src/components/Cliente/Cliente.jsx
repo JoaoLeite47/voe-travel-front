@@ -240,7 +240,7 @@ export default function Cliente({ cliente, id }) {
         )}
       </div>
       {showHotelComponent && <Hotel data={dataHotel} />}
-      {showVoosComponent && <Voos data={dataVoos} />}
+      {showVoosComponent && <Voos data={dataVoos} clientIdForConexion={id} />}
       {showServicosComponent && <Servicos data={dataServicos} />}
       {showValoresComponent && <Valores data={dataValores} />}
     </div>

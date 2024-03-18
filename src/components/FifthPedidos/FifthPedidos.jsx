@@ -26,7 +26,11 @@ export default function FifthPedidos({ valores }) {
           <div className="container-valores">
             {valores.map((valor, index) => (
               <div key={index}>
-                <h1 className="valor">Oferta n. {index + 1}</h1>
+                <h1 className="valor">
+                  {valor.oferta !== null
+                    ? valor.oferta
+                    : `Oferta n. ${index + 1}`}
+                </h1>
                 <h2 className="valor inicial">R$ {valor.valor_inicial}</h2>
                 <h2 className="valor final">R$ {valor.valor_final}</h2>
                 {valor.link_pagamento !== "" && (

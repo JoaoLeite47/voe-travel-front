@@ -9,7 +9,7 @@ import ModalInsertConexoes from "../ModalInsertConexoes/ModalInsertConexoes";
 import Conexoes from "../Conexoes/Conexoes";
 import { getConexoesById } from "../../services/callsConexoes";
 
-export default function Voos({ data }) {
+export default function Voos({ data, clientIdForConexion }) {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showConexoesModal, setShowConexoesModal] = useState(false);
   const [selectedVooId, setSelectedVooId] = useState(null);
@@ -220,6 +220,7 @@ export default function Voos({ data }) {
           voo_id={selectedVooId}
           handleClose={handleCloseConexoesModal}
           vooOrigem={origem}
+          clientIdForConexion={clientIdForConexion}
         />
       )}
       {showVoosComponent && <Conexoes data={dataVoos} />}

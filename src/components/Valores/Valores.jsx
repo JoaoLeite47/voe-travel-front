@@ -66,6 +66,10 @@ export default function Valores({ data }) {
                 <td>{valores.link_pagamento ? "Sim" : "Não"}</td>
               </tr>
               <tr>
+                <th>Oferta:</th>
+                <td>{valores.oferta || "Nada Cadastrado"}</td>
+              </tr>
+              <tr>
                 <th>Ações</th>
                 <td className="th-delete">
                   <button

@@ -7,7 +7,9 @@ export default function ModalInsertConexoes({
   voo_id,
   handleClose,
   vooOrigem,
+  clientIdForConexion,
 }) {
+  const [origem, setOrigem] = useState("");
   const [destino, setDestino] = useState("");
   const [dataVoo, setDataVoo] = useState("");
   const [horarioSaida, setHoriarioSaida] = useState("");
@@ -21,7 +23,7 @@ export default function ModalInsertConexoes({
     e.preventDefault();
     const data = {
       id_voo: voo_id,
-      origem: vooOrigem,
+      origem: origem,
       destino: destino,
       data_voo: dataVoo,
       horario_saida: horarioSaida,
@@ -30,6 +32,7 @@ export default function ModalInsertConexoes({
       codigo_reserva: codigoReserva,
       bagagem_mao: Number(bagagemMao),
       bagagem_desp: Number(bagagemDesp),
+      id_client: clientIdForConexion,
     };
     try {
       const response = await createConexao(data);
@@ -58,7 +61,18 @@ export default function ModalInsertConexoes({
       <div className="modal">
         <form className="form-modal-cadastro" onSubmit={handleSubmit}>
           <h2>Cadastro de Conexões</h2>
-          <label className="label-cadastro">Conexão do voo: {vooOrigem}</label>
+          <label className="label-cadastro">Conexão de Voo</label>
+          <label className="label-cadastro">Origem:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="origem"
+            name="origem"
+            value={origem}
+            onChange={(e) => {
+              setOrigem(e.target.value);
+            }}
+          />
           <label className="label-cadastro">Destino:</label>
           <input
             className="input-cadastro"

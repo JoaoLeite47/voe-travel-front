@@ -10,6 +10,7 @@ export default function ModalInsertValores({
   const [valorInicial, setValorInicial] = useState("");
   const [valorFinal, setValorFinal] = useState("");
   const [linkPagamento, setLinkPagamento] = useState("");
+  const [oferta, setOferta] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ export default function ModalInsertValores({
       valor_inicial: valorInicial,
       valor_final: valorFinal,
       link_pagamento: linkPagamento,
+      oferta: oferta,
     };
     try {
       const response = await createValores(data);
@@ -78,6 +80,17 @@ export default function ModalInsertValores({
             value={linkPagamento}
             onChange={(e) => {
               setLinkPagamento(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Oferta:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="oferta"
+            name="oferta"
+            value={oferta}
+            onChange={(e) => {
+              setOferta(e.target.value);
             }}
           />
           <div className="div-buttons">

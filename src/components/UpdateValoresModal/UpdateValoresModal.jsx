@@ -6,6 +6,7 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
   const [valorInicial, setValorInicial] = useState("");
   const [valorFinal, setValorFinal] = useState("");
   const [linkPagamento, setLinkPagamento] = useState("");
+  const [oferta, setOferta] = useState("");
 
   const handleCancel = () => {
     handleClose();
@@ -19,6 +20,7 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
         setValorInicial(valoresData.valor_inicial || "");
         setValorFinal(valoresData.valor_final || "");
         setLinkPagamento(valoresData.link_pagamento || "");
+        setOferta(valoresData.oferta || "");
       } catch (error) {
         console.log("error", error);
       }
@@ -37,6 +39,7 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
       valor_inicial: valorInicial,
       valor_final: valorFinal,
       link_pagamento: linkPagamento,
+      oferta: oferta,
     };
 
     try {
@@ -92,6 +95,17 @@ export default function UpdateValoresModal({ handleClose, id, clientId }) {
             value={linkPagamento}
             onChange={(e) => {
               setLinkPagamento(e.target.value);
+            }}
+          />
+          <label className="label-cadastro">Oferta:</label>
+          <input
+            className="input-cadastro"
+            type="text"
+            id="oferta"
+            name="oferta"
+            value={oferta}
+            onChange={(e) => {
+              setOferta(e.target.value);
             }}
           />
           <div className="div-buttons">

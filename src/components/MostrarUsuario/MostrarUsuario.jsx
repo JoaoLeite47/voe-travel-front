@@ -10,7 +10,12 @@ export default function MostrarUsuario() {
   const [dataList, setDataList] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedPersonId, setSelectedPersonId] = useState(null);
+  const [filterText, setFilterText] = useState("");
   const navigate = useNavigate();
+
+  const filteredDataList = dataList.filter((item) =>
+    item.nome.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   const handleUpdate = (id) => {
     setShowUpdateModal(true);
@@ -68,8 +73,16 @@ export default function MostrarUsuario() {
 
   return (
     <div className="data-list">
+      <input
+        type="text"
+        className="filter-input"
+        value={filterText}
+        onChange={(e) => setFilterText(e.target.value)}
+        placeholder="Filtrar pelo nome..."
+      />
       <ul>
-        {dataList.map((item) => (
+        {/* Renderizando os itens filtrados */}
+        {filteredDataList.map((item) => (
           <li key={item.id}>
             <div className="data-item">
               <span>{item.nome}</span>
